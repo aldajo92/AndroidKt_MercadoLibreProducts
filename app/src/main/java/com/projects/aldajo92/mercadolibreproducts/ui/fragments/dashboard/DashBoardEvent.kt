@@ -1,4 +1,4 @@
-package com.projects.aldajo92.mercadolibreproducts.ui.dashboard
+package com.projects.aldajo92.mercadolibreproducts.ui.fragments.dashboard
 
 import com.projects.aldajo92.mercadolibreproducts.models.MeliProduct
 

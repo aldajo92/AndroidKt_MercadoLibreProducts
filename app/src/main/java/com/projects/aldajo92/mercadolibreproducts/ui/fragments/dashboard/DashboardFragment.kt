@@ -1,26 +1,27 @@
-package com.projects.aldajo92.mercadolibreproducts.ui.dashboard
+package com.projects.aldajo92.mercadolibreproducts.ui.fragments.dashboard
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.projects.aldajo92.mercadolibreproducts.BR
 import com.projects.aldajo92.mercadolibreproducts.R
 import com.projects.aldajo92.mercadolibreproducts.databinding.FragmentDashboardBinding
 import com.projects.aldajo92.mercadolibreproducts.models.MeliProduct
-import com.projects.aldajo92.mercadolibreproducts.ui.recyclerAdapter.RecyclerItem
-import com.projects.aldajo92.mercadolibreproducts.ui.recyclerAdapter.RecyclerViewAdapter
+import com.projects.aldajo92.mercadolibreproducts.ui.BaseFragment
+import com.projects.aldajo92.mercadolibreproducts.ui.recycleradapter.RecyclerItem
+import com.projects.aldajo92.mercadolibreproducts.ui.recycleradapter.RecyclerViewAdapter
 import com.projects.aldajo92.mercadolibreproducts.viewModels.DashBoardViewModel
+import dagger.android.support.AndroidSupportInjection
 import timber.log.Timber
+import javax.inject.Inject
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : BaseFragment() {
 
-    private val viewModel: DashBoardViewModel by lazy {
-        ViewModelProvider(this).get(DashBoardViewModel::class.java)
-    }
+    @Inject
+    lateinit var viewModel : DashBoardViewModel
 
     private lateinit var binding: FragmentDashboardBinding
 
@@ -62,6 +63,11 @@ class DashboardFragment : Fragment() {
             RecyclerItem(it, R.layout.item_product, BR.model)
         }
         productAdapter.updateData(itemList)
+    }
+
+    override fun onAttach(context: Context) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
     }
 
 }

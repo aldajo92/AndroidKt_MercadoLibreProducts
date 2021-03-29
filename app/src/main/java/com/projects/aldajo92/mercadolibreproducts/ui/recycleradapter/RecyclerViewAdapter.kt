@@ -1,4 +1,4 @@
-package com.projects.aldajo92.mercadolibreproducts.ui.recyclerAdapter
+package com.projects.aldajo92.mercadolibreproducts.ui.recycleradapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

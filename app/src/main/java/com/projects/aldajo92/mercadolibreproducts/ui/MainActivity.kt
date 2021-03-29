@@ -1,11 +1,11 @@
 package com.projects.aldajo92.mercadolibreproducts.ui
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.projects.aldajo92.mercadolibreproducts.R
 import com.projects.aldajo92.mercadolibreproducts.databinding.ActivityMainBinding
+import dagger.android.support.DaggerAppCompatActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
 
     private var binding: ActivityMainBinding? = null
 

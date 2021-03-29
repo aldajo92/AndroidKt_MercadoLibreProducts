@@ -5,16 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.projects.aldajo92.mercadolibreproducts.BR
 import com.projects.aldajo92.mercadolibreproducts.R
 import com.projects.aldajo92.mercadolibreproducts.databinding.FragmentDashboardBinding
-import com.projects.aldajo92.mercadolibreproducts.models.ProductModel
+import com.projects.aldajo92.mercadolibreproducts.models.MeliProduct
 import com.projects.aldajo92.mercadolibreproducts.ui.recyclerAdapter.RecyclerItem
 import com.projects.aldajo92.mercadolibreproducts.ui.recyclerAdapter.RecyclerViewAdapter
-import kotlin.random.Random
+import com.projects.aldajo92.mercadolibreproducts.viewModels.DashBoardViewModel
+import timber.log.Timber
 
 class DashboardFragment : Fragment() {
+
+    private val viewModel: DashBoardViewModel by lazy {
+        ViewModelProvider(this).get(DashBoardViewModel::class.java)
+    }
 
     private lateinit var binding: FragmentDashboardBinding
 
@@ -33,33 +39,14 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val productList = listOf(
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20)),
-            ProductModel(Random.nextInt(9999999).toString(), generateRandomText(20))
-        )
+        viewModel.getMeliResponse()
 
-        val itemList = productList.map {
-            RecyclerItem(it, R.layout.item_product, BR.model)
-        }
+        viewModel.response.observe(viewLifecycleOwner, {
+            when(it){
+                is DashBoardEvent.ProductsSuccess -> handleResponse(it.products)
+                is DashBoardEvent.ErrorMessage -> Timber.e(it.message)
+            }
+        })
 
         binding.recyclerViewProducts.adapter = productAdapter
         binding.recyclerViewProducts.layoutManager =
@@ -68,17 +55,13 @@ class DashboardFragment : Fragment() {
                 LinearLayoutManager.VERTICAL,
                 false
             )
-
-        productAdapter.updateData(itemList)
     }
 
-    // TODO: Delete this function when the data comes from a repository
-    private val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9') + List(10) { ' '}
-    private fun generateRandomText(targetStringLength: Int): String {
-        return (1..targetStringLength)
-            .map { Random.nextInt(0, charPool.size) }
-            .map(charPool::get)
-            .joinToString("")
+    private fun handleResponse(products: List<MeliProduct>) {
+        val itemList = products.map {
+            RecyclerItem(it, R.layout.item_product, BR.model)
+        }
+        productAdapter.updateData(itemList)
     }
 
 }

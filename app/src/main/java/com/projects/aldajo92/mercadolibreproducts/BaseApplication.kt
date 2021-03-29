@@ -1,6 +1,5 @@
 package com.projects.aldajo92.mercadolibreproducts
 
-//import com.projects.aldajo92.daggerexample.di.DaggerAppComponent
 import com.projects.aldajo92.mercadolibreproducts.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication

@@ -17,8 +17,7 @@
     <string name="detail.company_field">Company:</string>
     <string name="detail.size_field">Size:</string>
     <string name="detail.description_field">Description:</string>
+    <string name="detail.price">Price:</string>
     <string name="detail.save">Save</string>
     <string name="detail.cancel">Cancel</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

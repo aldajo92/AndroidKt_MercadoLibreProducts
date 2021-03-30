@@ -16,10 +16,10 @@ class DashBoardViewModel @Inject constructor(
     private val _response = MutableLiveData<DashBoardEvent>()
     val response: LiveData<DashBoardEvent> get() = _response
 
-    fun getMeliResponse() {
+    fun performSearch(keyword: String) {
         viewModelScope.launch {
             try {
-                val listResult = meliApiService.getProducts()
+                val listResult = meliApiService.getProductsFromSearch(keyword)
                 _response.value = DashBoardEvent.ProductsSuccess(listResult.results)
             } catch (e: Exception) {
                 _response.value = DashBoardEvent.ErrorMessage("Failure: " + e.message)

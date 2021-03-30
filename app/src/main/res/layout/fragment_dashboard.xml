@@ -6,16 +6,19 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragments.dashboard.DashboardFragment">
+        tools:context=".ui.fragments.dashboard.DashBoardFragment">
 
-        <TextView
-            android:id="@+id/textView_dashboard_title"
+        <EditText
+            android:id="@+id/searchEditText"
             android:layout_width="0dp"
-            android:layout_marginTop="@dimen/spacing_medium"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/dashboard.title"
-            android:textSize="@dimen/font_large"
+            android:layout_marginStart="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginEnd="@dimen/spacing_medium"
+            android:hint="Search Word"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:textSize="@dimen/font_normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -25,11 +28,11 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/spacing_medium"
+            android:overScrollMode="never"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:overScrollMode="never"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView_dashboard_title" />
+            app:layout_constraintTop_toBottomOf="@id/searchEditText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

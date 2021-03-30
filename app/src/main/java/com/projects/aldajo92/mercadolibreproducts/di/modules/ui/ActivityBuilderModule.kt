@@ -1,4 +1,4 @@
-package com.projects.aldajo92.mercadolibreproducts.di.modules
+package com.projects.aldajo92.mercadolibreproducts.di.modules.ui
 
 import com.projects.aldajo92.mercadolibreproducts.ui.MainActivity
 import dagger.Module

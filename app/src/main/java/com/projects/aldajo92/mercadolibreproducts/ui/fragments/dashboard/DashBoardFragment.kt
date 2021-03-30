@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.projects.aldajo92.mercadolibreproducts.BR
 import com.projects.aldajo92.mercadolibreproducts.R
@@ -18,7 +19,8 @@ import dagger.android.support.AndroidSupportInjection
 import timber.log.Timber
 import javax.inject.Inject
 
-class DashboardFragment : BaseFragment() {
+
+class DashBoardFragment : BaseFragment() {
 
     @Inject
     lateinit var viewModel : DashBoardViewModel
@@ -40,10 +42,8 @@ class DashboardFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getMeliResponse()
-
         viewModel.response.observe(viewLifecycleOwner, {
-            when(it){
+            when (it) {
                 is DashBoardEvent.ProductsSuccess -> handleResponse(it.products)
                 is DashBoardEvent.ErrorMessage -> Timber.e(it.message)
             }
@@ -56,6 +56,13 @@ class DashboardFragment : BaseFragment() {
                 LinearLayoutManager.VERTICAL,
                 false
             )
+
+        binding.searchEditText.setOnEditorActionListener { textView, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                viewModel.performSearch(textView.text.toString())
+                true
+            } else false
+        }
     }
 
     private fun handleResponse(products: List<MeliProduct>) {

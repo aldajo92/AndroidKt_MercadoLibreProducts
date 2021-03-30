@@ -2,9 +2,9 @@ package com.projects.aldajo92.mercadolibreproducts.di
 
 import android.app.Application
 import com.projects.aldajo92.mercadolibreproducts.BaseApplication
-import com.projects.aldajo92.mercadolibreproducts.di.modules.ActivityBuilderModule
+import com.projects.aldajo92.mercadolibreproducts.di.modules.ui.ActivityBuilderModule
 import com.projects.aldajo92.mercadolibreproducts.di.modules.AppModule
-import com.projects.aldajo92.mercadolibreproducts.di.modules.FragmentBuilderModule
+import com.projects.aldajo92.mercadolibreproducts.di.modules.ui.FragmentBuilderModule
 import com.projects.aldajo92.mercadolibreproducts.di.modules.network.MeliNetworkModule
 import com.projects.aldajo92.mercadolibreproducts.di.viewmodel.ViewModelModule
 import dagger.BindsInstance

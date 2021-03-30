@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="com.projects.aldajo92.mercadolibreproducts.ui.fragments.dashboard.DashboardFragment"
+        android:name="com.projects.aldajo92.mercadolibreproducts.ui.fragments.dashboard.DashBoardFragment"
         android:label="DashboardFragment"
         tools:layout="@layout/fragment_dashboard" />
 

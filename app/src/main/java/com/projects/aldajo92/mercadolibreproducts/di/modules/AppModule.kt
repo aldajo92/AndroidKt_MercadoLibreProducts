@@ -5,7 +5,6 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 
-
 @Module
 class AppModule {
 
@@ -13,5 +12,4 @@ class AppModule {
     fun bindContext(application: Application): Context {
         return application.applicationContext
     }
-
 }

@@ -2,7 +2,7 @@ package com.projects.aldajo92.mercadolibreproducts.di.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.projects.aldajo92.mercadolibreproducts.viewModels.DashBoardViewModel
+import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.DashBoardViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

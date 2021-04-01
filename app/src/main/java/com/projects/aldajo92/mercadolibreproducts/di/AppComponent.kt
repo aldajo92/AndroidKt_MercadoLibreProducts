@@ -1,7 +1,7 @@
 package com.projects.aldajo92.mercadolibreproducts.di
 
 import android.app.Application
-import com.projects.aldajo92.mercadolibreproducts.BaseApplication
+import com.projects.aldajo92.mercadolibreproducts.presentation.BaseApplication
 import com.projects.aldajo92.mercadolibreproducts.di.modules.ui.ActivityBuilderModule
 import com.projects.aldajo92.mercadolibreproducts.di.modules.AppModule
 import com.projects.aldajo92.mercadolibreproducts.di.modules.ui.FragmentBuilderModule

@@ -1,6 +1,6 @@
 package com.projects.aldajo92.mercadolibreproducts.di.modules.ui
 
-import com.projects.aldajo92.mercadolibreproducts.ui.fragments.dashboard.DashBoardFragment
+import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.DashBoardFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

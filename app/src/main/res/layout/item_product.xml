@@ -6,7 +6,7 @@
 
         <variable
             name="model"
-            type="com.projects.aldajo92.mercadolibreproducts.models.MeliProduct" />
+            type="com.projects.aldajo92.mercadolibreproducts.domain.MeliProduct" />
     </data>
 
     <FrameLayout
@@ -47,7 +47,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/item_name_title"
                     app:layout_constraintTop_toTopOf="parent" />
-
 
                 <TextView
                     android:id="@+id/item_description_title"

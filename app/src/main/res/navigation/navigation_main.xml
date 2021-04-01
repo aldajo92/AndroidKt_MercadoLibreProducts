@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.projects.aldajo92.mercadolibreproducts.ui.fragments.SplashFragment"
+        android:name="com.projects.aldajo92.mercadolibreproducts.presentation.ui.splash.SplashFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_splash">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="com.projects.aldajo92.mercadolibreproducts.ui.fragments.dashboard.DashBoardFragment"
+        android:name="com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.DashBoardFragment"
         android:label="DashboardFragment"
         tools:layout="@layout/fragment_dashboard" />
 

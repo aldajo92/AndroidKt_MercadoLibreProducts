@@ -1,5 +1,9 @@
 # MercadoLibre Products (Android app made in Kotlin) #
 
+## Architecture implemented ##
+
+![Taken from: "The “Real” Repository Pattern in Android"](media/Android-Clean-Architecture.png)
+
 ## References ##
 - [Injecting Android ViewModels With Dagger2 in a Clean Architecture](https://betterprogramming.pub/injecting-android-viewmodels-with-dagger2-in-clean-architecture-744c1fe81530)
 - [Android Dagger 2 Injection For Fragment (Kotlin)](https://code.luasoftware.com/tutorials/android/dagger2-injection-for-fragment/)

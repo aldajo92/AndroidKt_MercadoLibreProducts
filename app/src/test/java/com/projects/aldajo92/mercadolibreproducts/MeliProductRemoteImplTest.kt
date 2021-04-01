@@ -3,6 +3,8 @@ package com.projects.aldajo92.mercadolibreproducts
 import com.projects.aldajo92.mercadolibreproducts.framework.network.MeliProductService
 import com.projects.aldajo92.mercadolibreproducts.data.MeliProductsRepositoryImpl
 import com.projects.aldajo92.mercadolibreproducts.data.MeliProductListEntityMapper
+import junit.framework.Assert.assertNotNull
+import junit.framework.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -25,11 +27,9 @@ class MeliProductRemoteImplTest {
 
     @Test
     fun getMeliProductsCompletes() {
-//        stubMeliProductServiceGetMeliProducts(Single.just(MeliProductFactory.makeMeliProductResponse()))
-//        val testObserver = meliProductRemoteImpl.getMeliProducts().test()
-//        testObserver.assertComplete()
+        assertNotNull(listEntityMapper)
     }
-//
+
     @Test
     fun getMeliProductsReturnsData() {
 //        val meliProductResponse = MeliProductFactory.makeMeliProductResponse()

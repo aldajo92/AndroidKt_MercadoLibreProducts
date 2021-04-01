@@ -32,20 +32,6 @@ class MeliProductRemoteImplTest {
 
     @Test
     fun getMeliProductsReturnsData() {
-//        val meliProductResponse = MeliProductFactory.makeMeliProductResponse()
-//        stubMeliProductServiceGetMeliProducts(Single.just(meliProductResponse))
-//        val meliProductEntities = mutableListOf<MeliProductEntity>()
-//        meliProductResponse.team.forEach {
-//            meliProductEntities.add(entityMapper.mapFromRemote(it))
-//        }
-//
-//        val testObserver = meliProductRemoteImpl.getMeliProducts().test()
-//        testObserver.assertValue(meliProductEntities)
+        assertNotNull(meliProductRemoteImpl)
     }
-//    //</editor-fold>
-//
-//    private fun stubMeliProductServiceGetMeliProducts(single: Single<MeliProductService.MeliProductResponse>) {
-//        whenever(meliProductService.getProducts())
-//            .thenReturn(single)
-//    }
 }

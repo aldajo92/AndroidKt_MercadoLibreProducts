@@ -6,28 +6,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.projects.aldajo92.mercadolibreproducts.BR
 import com.projects.aldajo92.mercadolibreproducts.R
 import com.projects.aldajo92.mercadolibreproducts.databinding.FragmentDashboardBinding
-import com.projects.aldajo92.mercadolibreproducts.domain.MeliProduct
+import com.projects.aldajo92.mercadolibreproducts.domain.Product
+import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.DashBoardAdapter
+import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.DashBoardItem
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
-import com.projects.aldajo92.mercadolibreproducts.presentation.recycleradapter.RecyclerItem
-import com.projects.aldajo92.mercadolibreproducts.presentation.recycleradapter.RecyclerViewAdapter
 import dagger.android.support.AndroidSupportInjection
 import timber.log.Timber
 import javax.inject.Inject
 
 
-class DashBoardFragment : BaseFragment() {
+class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
 
     @Inject
-    lateinit var viewModel : DashBoardViewModel
+    lateinit var viewModel: DashBoardViewModel
 
     private lateinit var binding: FragmentDashboardBinding
 
     private val productAdapter by lazy {
-        RecyclerViewAdapter()
+        DashBoardAdapter(this)
     }
 
     override fun onCreateView(
@@ -43,8 +44,8 @@ class DashBoardFragment : BaseFragment() {
 
         viewModel.response.observe(viewLifecycleOwner, {
             when (it) {
-                is DashBoardEvent.ProductsSuccess -> handleResponse(it.productModels)
-                is DashBoardEvent.ErrorMessage -> Timber.e(it.message)
+                is DashBoardEvents.ProductsSuccess -> handleResponse(it.productModels)
+                is DashBoardEvents.ErrorMessage -> Timber.e(it.message)
             }
         })
 
@@ -64,9 +65,9 @@ class DashBoardFragment : BaseFragment() {
         }
     }
 
-    private fun handleResponse(productModels: List<MeliProduct>) {
+    private fun handleResponse(productModels: List<Product>) {
         val itemList = productModels.map {
-            RecyclerItem(it, R.layout.item_product, BR.model)
+            DashBoardItem(it, R.layout.item_product, BR.model)
         }
         productAdapter.updateData(itemList)
     }
@@ -74,6 +75,11 @@ class DashBoardFragment : BaseFragment() {
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
+    }
+
+    override fun onClickItem(item: DashBoardItem<Product>) {
+        val action = DashBoardFragmentDirections.actionDashboardFragmentToDetailFragment(item.data)
+        findNavController().navigate(action)
     }
 
 }

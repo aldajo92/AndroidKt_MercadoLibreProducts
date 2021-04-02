@@ -1,8 +1,8 @@
-package com.projects.aldajo92.mercadolibreproducts.framework.network.models
+package com.projects.aldajo92.mercadolibreproducts.framework.network.models.search
 
 import com.squareup.moshi.Json
 
-data class MeliProductResponse(
+data class ProductResponse(
     val id : String,
     val title : String,
     val price : Int,

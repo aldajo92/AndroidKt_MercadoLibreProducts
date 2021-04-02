@@ -1,6 +1,6 @@
-package com.projects.aldajo92.mercadolibreproducts.framework.db
+package com.projects.aldajo92.mercadolibreproducts.framework.db.entities
 
-data class MeliProductEntity(
+data class ProductEntity(
     val id : String,
     val title : String,
     val price : Int,

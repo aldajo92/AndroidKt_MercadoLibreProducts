@@ -6,7 +6,7 @@
 
         <variable
             name="model"
-            type="com.projects.aldajo92.mercadolibreproducts.domain.MeliProduct" />
+            type="com.projects.aldajo92.mercadolibreproducts.domain.Product" />
     </data>
 
     <FrameLayout

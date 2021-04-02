@@ -5,7 +5,7 @@ import com.projects.aldajo92.mercadolibreproducts.presentation.BaseApplication
 import com.projects.aldajo92.mercadolibreproducts.di.modules.ui.ActivityBuilderModule
 import com.projects.aldajo92.mercadolibreproducts.di.modules.AppModule
 import com.projects.aldajo92.mercadolibreproducts.di.modules.ui.FragmentBuilderModule
-import com.projects.aldajo92.mercadolibreproducts.di.modules.network.MeliNetworkModule
+import com.projects.aldajo92.mercadolibreproducts.di.modules.network.NetworkModule
 import com.projects.aldajo92.mercadolibreproducts.di.viewmodel.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
@@ -21,7 +21,7 @@ import javax.inject.Singleton
         ActivityBuilderModule::class,
         FragmentBuilderModule::class,
         ViewModelModule::class,
-        MeliNetworkModule::class
+        NetworkModule::class
     ]
 )
 interface AppComponent : AndroidInjector<BaseApplication> {

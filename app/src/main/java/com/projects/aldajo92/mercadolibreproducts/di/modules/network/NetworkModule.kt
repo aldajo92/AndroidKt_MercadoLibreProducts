@@ -1,7 +1,7 @@
 package com.projects.aldajo92.mercadolibreproducts.di.modules.network
 
 import com.projects.aldajo92.mercadolibreproducts.presentation.MELI_BASE_URL
-import com.projects.aldajo92.mercadolibreproducts.framework.network.MeliProductService
+import com.projects.aldajo92.mercadolibreproducts.framework.network.service.MeliProductService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -11,7 +11,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
-class MeliNetworkModule {
+class NetworkModule {
 
     @Provides
     internal fun provideMoshi(): Moshi {

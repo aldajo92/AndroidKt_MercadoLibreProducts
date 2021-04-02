@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.projects.aldajo92.mercadolibreproducts.BR
 import com.projects.aldajo92.mercadolibreproducts.R
 import com.projects.aldajo92.mercadolibreproducts.databinding.FragmentDashboardBinding
-import com.projects.aldajo92.mercadolibreproducts.domain.MeliProduct
+import com.projects.aldajo92.mercadolibreproducts.domain.Product
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
 import com.projects.aldajo92.mercadolibreproducts.presentation.recycleradapter.RecyclerItem
 import com.projects.aldajo92.mercadolibreproducts.presentation.recycleradapter.RecyclerViewAdapter
@@ -64,7 +64,7 @@ class DashBoardFragment : BaseFragment() {
         }
     }
 
-    private fun handleResponse(productModels: List<MeliProduct>) {
+    private fun handleResponse(productModels: List<Product>) {
         val itemList = productModels.map {
             RecyclerItem(it, R.layout.item_product, BR.model)
         }

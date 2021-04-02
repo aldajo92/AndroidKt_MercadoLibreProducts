@@ -4,12 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.projects.aldajo92.mercadolibreproducts.data.repository.MeliProductsRepository
+import com.projects.aldajo92.mercadolibreproducts.data.repository.SearchProductsRepository
+import com.projects.aldajo92.mercadolibreproducts.domain.Product
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class DashBoardViewModel @Inject constructor(
-    private val meliProductsRepository: MeliProductsRepository
+    private val productsRepository: SearchProductsRepository<Product>
 ) : ViewModel() {
 
     private val _response = MutableLiveData<DashBoardEvent>()
@@ -18,7 +19,7 @@ class DashBoardViewModel @Inject constructor(
     fun performSearch(keyword: String) {
         viewModelScope.launch {
             try {
-                val listResult = meliProductsRepository.getProductsFromSearch(keyword)
+                val listResult = productsRepository.getProductsFromSearch(keyword)
 
                 _response.value = DashBoardEvent.ProductsSuccess(listResult)
             } catch (e: Exception) {

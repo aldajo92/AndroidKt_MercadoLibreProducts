@@ -1,10 +1,8 @@
 package com.projects.aldajo92.mercadolibreproducts
 
-import com.projects.aldajo92.mercadolibreproducts.framework.network.MeliProductService
-import com.projects.aldajo92.mercadolibreproducts.data.MeliProductsRepositoryImpl
-import com.projects.aldajo92.mercadolibreproducts.data.MeliProductListEntityMapper
+import com.projects.aldajo92.mercadolibreproducts.framework.network.service.MeliProductService
+import com.projects.aldajo92.mercadolibreproducts.data.ProductResponseToProductListMapper
 import junit.framework.Assert.assertNotNull
-import junit.framework.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -13,25 +11,25 @@ import org.mockito.Mockito.mock
 
 @RunWith(JUnit4::class)
 class MeliProductRemoteImplTest {
-    private lateinit var listEntityMapper: MeliProductListEntityMapper
+    private lateinit var listMapperProductResponseTo: ProductResponseToProductListMapper
     private lateinit var meliProductService: MeliProductService
 
-    private lateinit var meliProductRemoteImpl: MeliProductsRepositoryImpl
+//    private lateinit var meliProductRemoteImplSearch: SearchProductsRepositoryImpl
 
     @Before
     fun setup() {
-        listEntityMapper = mock(MeliProductListEntityMapper::class.java)
+        listMapperProductResponseTo = mock(ProductResponseToProductListMapper::class.java)
         meliProductService = mock(MeliProductService::class.java)
-        meliProductRemoteImpl = MeliProductsRepositoryImpl(meliProductService, listEntityMapper)
+//        meliProductRemoteImplSearch = SearchProductsRepositoryImpl(meliProductService, listEntityMapper)
     }
 
     @Test
     fun getMeliProductsCompletes() {
-        assertNotNull(listEntityMapper)
+        assertNotNull(listMapperProductResponseTo)
     }
 
     @Test
     fun getMeliProductsReturnsData() {
-        assertNotNull(meliProductRemoteImpl)
+        assertNotNull(meliProductService)
     }
 }

@@ -3,7 +3,7 @@ package com.projects.aldajo92.mercadolibreproducts.di.modules
 import android.app.Application
 import android.content.Context
 import com.projects.aldajo92.mercadolibreproducts.framework.network.ProductResponseToProductList
-import com.projects.aldajo92.mercadolibreproducts.data.datasource.ApiDataSource
+import com.projects.aldajo92.mercadolibreproducts.data.datasource.ApiSearchDataSource
 import com.projects.aldajo92.mercadolibreproducts.data.datasource.DBDataSource
 import com.projects.aldajo92.mercadolibreproducts.data.repository.search.SearchRepository
 import com.projects.aldajo92.mercadolibreproducts.data.repository.search.SearchProductApiRepositoryImpl
@@ -25,14 +25,6 @@ class AppModule {
         return application.applicationContext
     }
 
-//    @Provides
-//    @Singleton
-//    internal fun provideMeliProductsRemoteImpl(service: ProductService,
-//                                               factory: ProductListEntityMapper
-//    ): SearchProductsRepository<Product> {
-//        return SearchProductsRepositoryImpl<ProductResponse, ProductEntity>(service, factory)
-//    }
-
     @Provides
     @Singleton
     internal fun provideDBProductDataSource(meliProductService: MeliProductService): DBDataSource<ProductEntity> {
@@ -41,16 +33,16 @@ class AppModule {
 
     @Provides
     @Singleton
-    internal fun provideApiProductDataSource(meliProductService: MeliProductService): ApiDataSource<ProductResponse> {
+    internal fun provideApiProductDataSource(meliProductService: MeliProductService): ApiSearchDataSource<ProductResponse> {
         return MeliSearchDataSource(meliProductService)
     }
 
     @Provides
     @Singleton
     internal fun provideSearchProductsRepository(
-        api: ApiDataSource<ProductResponse>,
+        apiSearch: ApiSearchDataSource<ProductResponse>,
         mapperProductResponseTo: ProductResponseToProductList
     ): SearchRepository<Product> {
-        return SearchProductApiRepositoryImpl(api, mapperProductResponseTo)
+        return SearchProductApiRepositoryImpl(apiSearch, mapperProductResponseTo)
     }
 }

@@ -1,6 +1,6 @@
 package com.projects.aldajo92.mercadolibreproducts.data.repository.search
 
-import com.projects.aldajo92.mercadolibreproducts.data.datasource.ApiDataSource
+import com.projects.aldajo92.mercadolibreproducts.data.datasource.ApiSearchDataSource
 import com.projects.aldajo92.mercadolibreproducts.data.mapper.EntityListMapper
 import com.projects.aldajo92.mercadolibreproducts.models.ProductDTO
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
@@ -18,7 +18,7 @@ import org.mockito.junit.MockitoJUnitRunner
 class SearchProductsRepositoryImplTest {
 
     @Mock
-    lateinit var apiDataSource: ApiDataSource<ProductDTO>
+    lateinit var apiSearchDataSource: ApiSearchDataSource<ProductDTO>
 
     lateinit var searchProductApiRepositoryImpl: SearchProductApiRepositoryImpl<ProductDTO>
 
@@ -36,7 +36,7 @@ class SearchProductsRepositoryImplTest {
     fun setup() {
         MockitoAnnotations.openMocks(this)
         searchProductApiRepositoryImpl = SearchProductApiRepositoryImpl(
-            apiDataSource,
+            apiSearchDataSource,
             productListEntityMapper
         )
     }
@@ -49,7 +49,7 @@ class SearchProductsRepositoryImplTest {
             ProductDTO("title2", 20000)
         )
         runBlocking {
-            `when`(apiDataSource.getProductsFromSearch(keyword)).thenReturn(productDTO)
+            `when`(apiSearchDataSource.getProductsFromSearch(keyword)).thenReturn(productDTO)
             assertEquals(2, searchProductApiRepositoryImpl.getProductsFromSearch(keyword).size)
         }
     }

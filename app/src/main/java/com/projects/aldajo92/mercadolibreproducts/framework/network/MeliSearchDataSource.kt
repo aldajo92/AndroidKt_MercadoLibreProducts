@@ -9,6 +9,7 @@ class MeliSearchDataSource constructor(
 ) : ApiSearchDataSource<ProductResponse> {
 
     override suspend fun getProductsFromSearch(keywords: String): List<ProductResponse> {
+        if (keywords.isBlank()) return emptyList()
         return meliProductService.getProductsFromSearch(keywords).productList
     }
 

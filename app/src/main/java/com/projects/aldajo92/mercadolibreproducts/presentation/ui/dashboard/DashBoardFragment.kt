@@ -12,8 +12,8 @@ import com.projects.aldajo92.mercadolibreproducts.BR
 import com.projects.aldajo92.mercadolibreproducts.R
 import com.projects.aldajo92.mercadolibreproducts.databinding.FragmentDashboardBinding
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
-import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.DashBoardAdapter
-import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.DashBoardItem
+import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.GenericAdapter
+import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.GenericItem
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
 import dagger.android.support.AndroidSupportInjection
 import timber.log.Timber
@@ -28,7 +28,7 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
     private lateinit var binding: FragmentDashboardBinding
 
     private val productAdapter by lazy {
-        DashBoardAdapter(this)
+        GenericAdapter(this)
     }
 
     override fun onCreateView(
@@ -67,7 +67,7 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
 
     private fun handleResponse(productModels: List<Product>) {
         val itemList = productModels.map {
-            DashBoardItem(it, R.layout.item_product, BR.model)
+            GenericItem(it, R.layout.item_product, BR.model)
         }
         productAdapter.updateData(itemList)
     }
@@ -77,7 +77,7 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
         super.onAttach(context)
     }
 
-    override fun onClickItem(item: DashBoardItem<Product>) {
+    override fun onClickItem(item: GenericItem<Product>) {
         val action = DashBoardFragmentDirections.actionDashboardFragmentToDetailFragment(item.data)
         findNavController().navigate(action)
     }

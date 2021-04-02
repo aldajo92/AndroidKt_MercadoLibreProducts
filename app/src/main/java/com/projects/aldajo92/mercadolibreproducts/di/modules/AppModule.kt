@@ -8,8 +8,9 @@ import com.projects.aldajo92.mercadolibreproducts.data.datasource.DBDataSource
 import com.projects.aldajo92.mercadolibreproducts.data.repository.search.SearchRepository
 import com.projects.aldajo92.mercadolibreproducts.data.repository.search.SearchProductApiRepositoryImpl
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
-import com.projects.aldajo92.mercadolibreproducts.framework.db.MeliDBDataSource
-import com.projects.aldajo92.mercadolibreproducts.framework.db.entities.ProductEntity
+import com.projects.aldajo92.mercadolibreproducts.framework.db.MeliFavoriteDataSource
+import com.projects.aldajo92.mercadolibreproducts.framework.db.dao.FavoriteProductsDao
+import com.projects.aldajo92.mercadolibreproducts.framework.db.entities.FavoriteProductEntity
 import com.projects.aldajo92.mercadolibreproducts.framework.network.service.MeliProductService
 import com.projects.aldajo92.mercadolibreproducts.framework.network.MeliSearchDataSource
 import com.projects.aldajo92.mercadolibreproducts.framework.network.models.search.ProductResponse
@@ -27,8 +28,8 @@ class AppModule {
 
     @Provides
     @Singleton
-    internal fun provideDBProductDataSource(meliProductService: MeliProductService): DBDataSource<ProductEntity> {
-        return MeliDBDataSource()
+    internal fun provideDBProductDataSource(favoriteProductsDao: FavoriteProductsDao): DBDataSource<FavoriteProductEntity> {
+        return MeliFavoriteDataSource(favoriteProductsDao)
     }
 
     @Provides

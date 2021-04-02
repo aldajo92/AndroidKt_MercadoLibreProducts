@@ -7,10 +7,10 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.DashBoardListener
 
-class DashBoardAdapter<T>(private val dashBoardListener: DashBoardListener<T>) :
+class GenericAdapter<T>(private val dashBoardListener: DashBoardListener<T>) :
     RecyclerView.Adapter<BindingViewHolder>() {
 
-    private val items = mutableListOf<DashBoardItem<T>>()
+    private val items = mutableListOf<GenericItem<T>>()
 
     override fun getItemCount(): Int {
         return items.size
@@ -31,13 +31,13 @@ class DashBoardAdapter<T>(private val dashBoardListener: DashBoardListener<T>) :
         holder.binding.executePendingBindings()
     }
 
-    fun updateData(newItems: List<DashBoardItem<T>>) {
+    fun updateData(newItems: List<GenericItem<T>>) {
         this.items.clear()
         this.items.addAll(newItems)
         notifyDataSetChanged()
     }
 
-    private fun getItem(position: Int): DashBoardItem<T> {
+    private fun getItem(position: Int): GenericItem<T> {
         return items[position]
     }
 }

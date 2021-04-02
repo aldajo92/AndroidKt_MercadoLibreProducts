@@ -19,7 +19,8 @@ ext {
     retrofit = "2.9.0"
     picasso = '2.71828'
 
-    dagger_version = '2.33'
+    dagger_version = '2.32'
+    room_version = '2.2.5'
 
     // Testing Dependencies Version
     junit = '4.13.2'

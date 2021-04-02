@@ -1,4 +1,4 @@
-package com.projects.aldajo92.mercadolibreproducts.presentation.recycleradapter
+package com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView

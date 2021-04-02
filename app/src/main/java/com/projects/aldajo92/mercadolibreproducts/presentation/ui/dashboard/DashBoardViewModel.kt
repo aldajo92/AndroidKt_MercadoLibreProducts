@@ -13,17 +13,17 @@ class DashBoardViewModel @Inject constructor(
     private val productsRepository: SearchProductsRepository<Product>
 ) : ViewModel() {
 
-    private val _response = MutableLiveData<DashBoardEvent>()
-    val response: LiveData<DashBoardEvent> get() = _response
+    private val _response = MutableLiveData<DashBoardEvents>()
+    val response: LiveData<DashBoardEvents> get() = _response
 
     fun performSearch(keyword: String) {
         viewModelScope.launch {
             try {
                 val listResult = productsRepository.getProductsFromSearch(keyword)
 
-                _response.value = DashBoardEvent.ProductsSuccess(listResult)
+                _response.value = DashBoardEvents.ProductsSuccess(listResult)
             } catch (e: Exception) {
-                _response.value = DashBoardEvent.ErrorMessage("Failure: " + e.message)
+                _response.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
             }
         }
     }

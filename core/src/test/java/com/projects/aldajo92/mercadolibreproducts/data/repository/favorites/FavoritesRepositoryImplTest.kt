@@ -2,6 +2,7 @@ package com.projects.aldajo92.mercadolibreproducts.data.repository.favorites
 
 import com.projects.aldajo92.mercadolibreproducts.data.datasource.DBDataSource
 import com.projects.aldajo92.mercadolibreproducts.data.mapper.EntityListMapper
+import com.projects.aldajo92.mercadolibreproducts.data.mapper.EntityMapper
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
 import com.projects.aldajo92.mercadolibreproducts.models.ProductEntity
 import kotlinx.coroutines.runBlocking
@@ -37,12 +38,21 @@ class FavoritesRepositoryImplTest {
         }
     }
 
+    private val invertMapper: EntityMapper<Product, ProductEntity> by lazy {
+        object : EntityMapper<Product, ProductEntity> {
+            override fun map(inputValue: Product): ProductEntity {
+                return ProductEntity(inputValue.meliId, inputValue.title, inputValue.price, false)
+            }
+        }
+    }
+
     @Before
     fun setup() {
         MockitoAnnotations.openMocks(this)
         searchProductApiRepositoryImpl = FavoritesRepositoryImpl(
             dbDataSource,
-            productListEntityMapper
+            productListEntityMapper,
+            invertMapper
         )
     }
 

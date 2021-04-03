@@ -25,19 +25,4 @@ class DBModule {
         return database.favoriteProductDao()
     }
 
-//    @Provides
-//    @Singleton
-//    internal fun provideFavoriteDao(): FavoriteProductsDao {
-//        return object : FavoriteProductsDao {
-//            override suspend fun addFavoriteProduct(product: FavoriteProductEntity) {
-//
-//            }
-//
-//            override suspend fun getAllProducts(): List<FavoriteProductEntity> {
-//                return emptyList()
-//            }
-//
-//        }
-//    }
-
 }

@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.projects.aldajo92.mercadolibreproducts.databinding.FragmentDetailBinding
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
-import timber.log.Timber
+import javax.inject.Inject
 
 class DetailFragment : BaseFragment() {
+
+    @Inject
+    lateinit var viewModel: DetailViewModel
 
     private lateinit var binding: FragmentDetailBinding
 
@@ -25,9 +28,8 @@ class DetailFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val product = args.product
-        binding.model = product
-        Timber.i(product.title)
+        binding.model = args.product
+        viewModel.product
     }
 
 }

@@ -5,10 +5,14 @@ import android.content.Context
 import com.projects.aldajo92.mercadolibreproducts.framework.network.ProductResponseToProductList
 import com.projects.aldajo92.mercadolibreproducts.data.datasource.ApiSearchDataSource
 import com.projects.aldajo92.mercadolibreproducts.data.datasource.DBDataSource
+import com.projects.aldajo92.mercadolibreproducts.data.repository.favorites.FavoritesRepository
+import com.projects.aldajo92.mercadolibreproducts.data.repository.favorites.FavoritesRepositoryImpl
 import com.projects.aldajo92.mercadolibreproducts.data.repository.search.SearchRepository
 import com.projects.aldajo92.mercadolibreproducts.data.repository.search.SearchProductApiRepositoryImpl
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
+import com.projects.aldajo92.mercadolibreproducts.framework.db.FavoriteEntityToProductList
 import com.projects.aldajo92.mercadolibreproducts.framework.db.MeliFavoriteDataSource
+import com.projects.aldajo92.mercadolibreproducts.framework.db.ProductToEntity
 import com.projects.aldajo92.mercadolibreproducts.framework.db.dao.FavoriteProductsDao
 import com.projects.aldajo92.mercadolibreproducts.framework.db.entities.FavoriteProductEntity
 import com.projects.aldajo92.mercadolibreproducts.framework.network.service.MeliProductService
@@ -42,8 +46,18 @@ class AppModule {
     @Singleton
     internal fun provideSearchProductsRepository(
         apiSearch: ApiSearchDataSource<ProductResponse>,
-        mapperProductResponseTo: ProductResponseToProductList
+        mapper: ProductResponseToProductList
     ): SearchRepository<Product> {
-        return SearchProductApiRepositoryImpl(apiSearch, mapperProductResponseTo)
+        return SearchProductApiRepositoryImpl(apiSearch, mapper)
+    }
+
+    @Provides
+    @Singleton
+    internal fun provideFavoriteRepository(
+        dbDataSource: DBDataSource<FavoriteProductEntity>,
+        mapper: FavoriteEntityToProductList,
+        invertMapper: ProductToEntity
+    ): FavoritesRepository<Product> {
+        return FavoritesRepositoryImpl(dbDataSource, mapper, invertMapper)
     }
 }

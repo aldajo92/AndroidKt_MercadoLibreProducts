@@ -19,7 +19,6 @@ import dagger.android.support.AndroidSupportInjection
 import timber.log.Timber
 import javax.inject.Inject
 
-
 class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
 
     @Inject

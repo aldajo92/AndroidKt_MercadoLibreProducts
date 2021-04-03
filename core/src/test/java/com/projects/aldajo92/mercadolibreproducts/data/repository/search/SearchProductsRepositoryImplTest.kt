@@ -11,6 +11,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mock
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
@@ -26,7 +27,7 @@ class SearchProductsRepositoryImplTest {
         object : EntityListMapper<ProductDTO, Product> {
             override fun map(inputValue: List<ProductDTO>): List<Product> {
                 return inputValue.map { productDTO ->
-                    Product(productDTO.title, productDTO.price)
+                    Product(productDTO.id, productDTO.title, productDTO.price)
                 }
             }
         }
@@ -45,8 +46,8 @@ class SearchProductsRepositoryImplTest {
     fun getProductsFromSearch_returnsComplete() {
         val keyword = "value"
         val productDTO = listOf(
-            ProductDTO("title1", 10000),
-            ProductDTO("title2", 20000)
+            ProductDTO("1234", "title1", 10000),
+            ProductDTO("1235", "title2", 20000)
         )
         runBlocking {
             `when`(apiSearchDataSource.getProductsFromSearch(keyword)).thenReturn(productDTO)

@@ -13,6 +13,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.mock
 
 @RunWith(MockitoJUnitRunner::class)
 class FavoritesRepositoryImplTest {
@@ -26,7 +27,12 @@ class FavoritesRepositoryImplTest {
         object : EntityListMapper<ProductEntity, Product> {
             override fun map(inputValue: List<ProductEntity>): List<Product> {
                 return inputValue.map { productDTO ->
-                    Product(productDTO.title, productDTO.price, productDTO.isFavorite)
+                    Product(
+                        productDTO.id,
+                        productDTO.title,
+                        productDTO.price,
+                        productDTO.isFavorite
+                    )
                 }
             }
         }
@@ -44,8 +50,8 @@ class FavoritesRepositoryImplTest {
     @Test
     fun getProductsFromSearch_returnsComplete() {
         val productEntity = listOf(
-            ProductEntity("title1", 10000, false),
-            ProductEntity("title2", 20000, true)
+            ProductEntity("1233", "title1", 10000, false),
+            ProductEntity("1234", "title2", 20000, true)
         )
         runBlocking {
             Mockito.`when`(dbDataSource.getStoredData()).thenReturn(productEntity)

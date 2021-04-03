@@ -20,7 +20,7 @@ class SearchProductsRepositoryImplTest {
     @Mock
     lateinit var apiSearchDataSource: ApiSearchDataSource<ProductDTO>
 
-    lateinit var searchProductApiRepositoryImpl: SearchProductApiRepositoryImpl<ProductDTO>
+    private lateinit var searchProductApiRepositoryImpl: SearchProductApiRepositoryImpl<ProductDTO>
 
     private val productListEntityMapper: EntityListMapper<ProductDTO, Product> by lazy {
         object : EntityListMapper<ProductDTO, Product> {

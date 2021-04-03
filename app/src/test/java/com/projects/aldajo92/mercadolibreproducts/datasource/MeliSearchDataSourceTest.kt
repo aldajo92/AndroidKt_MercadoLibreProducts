@@ -19,10 +19,10 @@ import kotlin.random.Random
 @RunWith(MockitoJUnitRunner::class)
 class MeliSearchDataSourceTest {
 
-    lateinit var meliSearchDataSource: MeliSearchDataSource
-
     @Mock
     lateinit var meliProductService: MeliProductService
+
+    lateinit var meliSearchDataSource: MeliSearchDataSource
 
     @Before
     fun setup() {

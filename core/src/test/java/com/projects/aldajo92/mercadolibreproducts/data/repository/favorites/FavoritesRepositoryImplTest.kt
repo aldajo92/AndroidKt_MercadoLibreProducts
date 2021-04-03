@@ -20,7 +20,7 @@ class FavoritesRepositoryImplTest {
     @Mock
     lateinit var dbDataSource: DBDataSource<ProductEntity>
 
-    lateinit var searchProductApiRepositoryImpl: FavoritesRepositoryImpl<ProductEntity>
+    private lateinit var searchProductApiRepositoryImpl: FavoritesRepositoryImpl<ProductEntity>
 
     private val productListEntityMapper: EntityListMapper<ProductEntity, Product> by lazy {
         object : EntityListMapper<ProductEntity, Product> {

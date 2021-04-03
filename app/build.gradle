@@ -5,14 +5,6 @@ plugins {
     id 'androidx.navigation.safeargs'
 }
 
-// taken from: https://stackoverflow.com/questions/60864940/antlr-tool-version-4-5-3-used-for-code-generation-does-not-match-the-current-run/60865124
-//configurations.all {
-//    resolutionStrategy {
-//        force "org.antlr:antlr4-runtime:4.5.3"
-//        force "org.antlr:antlr4-tool:4.5.3"
-//    }
-//}
-
 android {
     compileSdkVersion 30
 

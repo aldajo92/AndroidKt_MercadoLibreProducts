@@ -10,17 +10,19 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mock
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.verify
 import kotlin.random.Random
 
 @RunWith(MockitoJUnitRunner::class)
 class MeliFavoriteDataSourceTest {
 
-    lateinit var meliFavoriteDataSource: MeliFavoriteDataSource
-
     @Mock
     lateinit var favoriteProductsDao: FavoriteProductsDao
+
+    private lateinit var meliFavoriteDataSource: MeliFavoriteDataSource
 
     @Before
     fun setup() {
@@ -41,8 +43,12 @@ class MeliFavoriteDataSourceTest {
         }
     }
 
-//    @Test
-//    fun storeData() {
-//
-//    }
+    @Test
+    fun storeData() {
+        runBlocking {
+            val favoriteProduct = mock(FavoriteProductEntity::class.java)
+            meliFavoriteDataSource.storeData(favoriteProduct)
+            verify(favoriteProductsDao).addFavoriteProduct(favoriteProduct)
+        }
+    }
 }

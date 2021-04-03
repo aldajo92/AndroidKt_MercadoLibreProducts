@@ -17,7 +17,7 @@ class ProductResponseToProductList @Inject constructor() :
      */
     override fun map(inputValue: List<ProductResponse>): List<Product> {
         return inputValue.map { product ->
-            Product(product.title, product.price)
+            Product(product.id, product.title, product.price)
         }
     }
 }

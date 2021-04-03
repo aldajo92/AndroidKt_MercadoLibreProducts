@@ -14,7 +14,6 @@ import org.mockito.Mockito.mock
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.kotlin.verify
-import kotlin.random.Random
 
 @RunWith(MockitoJUnitRunner::class)
 class MeliFavoriteDataSourceTest {
@@ -33,8 +32,8 @@ class MeliFavoriteDataSourceTest {
     @Test
     fun getStoredData() {
         val productFavorite = listOf(
-            FavoriteProductEntity(Random.nextInt(), "Title1", 10000, "COP", 10),
-            FavoriteProductEntity(Random.nextInt(), "Title2", 20000, "COP", 10)
+            mock(FavoriteProductEntity::class.java),
+            mock(FavoriteProductEntity::class.java)
         )
 
         runBlocking {

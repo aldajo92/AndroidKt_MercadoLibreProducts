@@ -13,4 +13,26 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+
+
+
+    <style name="TextViewContentWhite">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TextViewSmallWhite">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="TextViewTitleWhite" parent="TextViewSmallWhite">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="TextViewHuge" parent="TextViewSmallWhite">
+        <item name="android:textSize">44sp</item>
+    </style>
+
 </resources>

@@ -29,7 +29,7 @@ class DetailFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.model = args.product
-        viewModel.product
+        viewModel.product = args.product
     }
 
 }

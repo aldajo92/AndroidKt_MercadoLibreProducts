@@ -66,7 +66,7 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
 
     private fun handleResponse(productModels: List<Product>) {
         val itemList = productModels.map {
-            GenericItem(it, R.layout.item_product, BR.model)
+            DashBoardItem(it, R.layout.item_dashboard, BR.model)
         }
         productAdapter.updateData(itemList)
     }

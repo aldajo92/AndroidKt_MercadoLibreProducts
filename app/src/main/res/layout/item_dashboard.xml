@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.projects.aldajo92.mercadolibreproducts.domain.Product" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_small"
+        tools:background="@color/black">
+
+        <ImageView
+            android:id="@+id/imageView_picture"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_votes"
+            style="@style/TextViewSmallWhite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/spacing_small"
+            android:text="@{ Integer.toString(model.price) }"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView_picture"
+            app:layout_constraintStart_toStartOf="@+id/imageView_picture"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_picture"
+            tools:text="0000" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

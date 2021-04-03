@@ -7,4 +7,7 @@
     <!--Font values-->
     <dimen name="font_normal">20sp</dimen>
     <dimen name="font_large">30sp</dimen>
+
+    <dimen name="width_image_home">150dp</dimen>
+    <dimen name="height_image_home">120dp</dimen>
 </resources>

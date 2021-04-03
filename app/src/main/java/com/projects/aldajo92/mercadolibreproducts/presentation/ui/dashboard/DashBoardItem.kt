@@ -24,9 +24,11 @@ data class DashBoardItem(
             }
 
             // TODO: Format URL with extension-function
-            Glide.with(binding.root.context)
-                .load("https://http2.mlstatic.com/D_${product.imgId}-O.jpg")
-                .into(binding.imageViewPicture)
+            if(product.imgId.isNotBlank()){
+                Glide.with(binding.root.context)
+                    .load("https://http2.mlstatic.com/D_${product.imgId}-O.jpg")
+                    .into(binding.imageViewPicture)
+            }
         }
     }
 

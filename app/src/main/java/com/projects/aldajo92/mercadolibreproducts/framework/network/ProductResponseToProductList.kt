@@ -21,8 +21,8 @@ class ProductResponseToProductList @Inject constructor() :
                 product.id,
                 product.title,
                 product.price,
-                imgUrl = product.thumbnail,
-                imgId = product.thumbnailId
+                imgUrl = product.thumbnail ?: "",
+                imgId = product.thumbnailId ?: ""
             )
         }
     }

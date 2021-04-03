@@ -9,6 +9,10 @@
 Github Actions:
 - [Setup CI For Android Apps Using GitHub Actions // Android CI Tutorial](https://www.youtube.com/watch?v=K9w01h4-Wnc)
 
+Room:
+- [Save data in a local database using Room](https://developer.android.com/training/data-storage/room)
+- [Test and debug your database](https://developer.android.com/training/data-storage/room/testing-db)
+
 Architechture:
 - [Injecting Android ViewModels With Dagger2 in a Clean Architecture](https://betterprogramming.pub/injecting-android-viewmodels-with-dagger2-in-clean-architecture-744c1fe81530)
 - [Android Dagger 2 Injection For Fragment (Kotlin)](https://code.luasoftware.com/tutorials/android/dagger2-injection-for-fragment/)

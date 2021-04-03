@@ -20,13 +20,18 @@ class FavoritesRepositoryImplTest {
     @Mock
     lateinit var dbDataSource: DBDataSource<ProductEntity>
 
-    lateinit var searchProductApiRepositoryImpl: FavoritesRepositoryImpl<ProductEntity>
+    private lateinit var searchProductApiRepositoryImpl: FavoritesRepositoryImpl<ProductEntity>
 
     private val productListEntityMapper: EntityListMapper<ProductEntity, Product> by lazy {
         object : EntityListMapper<ProductEntity, Product> {
             override fun map(inputValue: List<ProductEntity>): List<Product> {
                 return inputValue.map { productDTO ->
-                    Product(productDTO.title, productDTO.price, productDTO.isFavorite)
+                    Product(
+                        productDTO.id,
+                        productDTO.title,
+                        productDTO.price,
+                        productDTO.isFavorite
+                    )
                 }
             }
         }
@@ -44,8 +49,8 @@ class FavoritesRepositoryImplTest {
     @Test
     fun getProductsFromSearch_returnsComplete() {
         val productEntity = listOf(
-            ProductEntity("title1", 10000, false),
-            ProductEntity("title2", 20000, true)
+            ProductEntity("1233", "title1", 10000, false),
+            ProductEntity("1234", "title2", 20000, true)
         )
         runBlocking {
             Mockito.`when`(dbDataSource.getStoredData()).thenReturn(productEntity)

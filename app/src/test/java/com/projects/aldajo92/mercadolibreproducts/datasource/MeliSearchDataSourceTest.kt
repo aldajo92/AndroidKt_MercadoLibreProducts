@@ -1,5 +1,6 @@
-package com.projects.aldajo92.mercadolibreproducts.framework.network
+package com.projects.aldajo92.mercadolibreproducts.datasource
 
+import com.projects.aldajo92.mercadolibreproducts.framework.network.MeliSearchDataSource
 import com.projects.aldajo92.mercadolibreproducts.framework.network.models.search.ProductResponse
 import com.projects.aldajo92.mercadolibreproducts.framework.network.models.search.SearchResponse
 import com.projects.aldajo92.mercadolibreproducts.framework.network.service.MeliProductService
@@ -18,10 +19,10 @@ import kotlin.random.Random
 @RunWith(MockitoJUnitRunner::class)
 class MeliSearchDataSourceTest {
 
-    lateinit var meliSearchDataSource: MeliSearchDataSource
-
     @Mock
     lateinit var meliProductService: MeliProductService
+
+    lateinit var meliSearchDataSource: MeliSearchDataSource
 
     @Before
     fun setup() {

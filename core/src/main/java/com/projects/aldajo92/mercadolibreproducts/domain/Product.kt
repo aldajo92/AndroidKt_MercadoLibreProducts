@@ -8,7 +8,8 @@ data class Product(
     val price: Int,
     val isFavorite: Boolean = false,
     val imgUrl: String = "",
-    val imgId: String = ""
+    val imgId: String = "",
+    val productUrl: String = ""
 ) : Serializable {
     companion object {
         val EMPTY = Product("0", "", 0, false)

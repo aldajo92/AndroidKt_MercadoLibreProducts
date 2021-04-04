@@ -1,6 +1,6 @@
 package com.projects.aldajo92.mercadolibreproducts.datasource
 
-import com.projects.aldajo92.mercadolibreproducts.framework.network.MeliSearchDataSource
+import com.projects.aldajo92.mercadolibreproducts.framework.network.datasources.MeliSearchDataSourceImpl
 import com.projects.aldajo92.mercadolibreproducts.framework.network.models.search.ProductResponse
 import com.projects.aldajo92.mercadolibreproducts.framework.network.models.search.SearchResponse
 import com.projects.aldajo92.mercadolibreproducts.framework.network.service.MeliProductService
@@ -22,19 +22,19 @@ class MeliSearchDataSourceTest {
     @Mock
     lateinit var meliProductService: MeliProductService
 
-    lateinit var meliSearchDataSource: MeliSearchDataSource
+    lateinit var meliSearchDataSourceImpl: MeliSearchDataSourceImpl
 
     @Before
     fun setup() {
         MockitoAnnotations.openMocks(this)
-        meliSearchDataSource = MeliSearchDataSource(meliProductService)
+        meliSearchDataSourceImpl = MeliSearchDataSourceImpl(meliProductService)
     }
 
     @Test
     fun getProductsFromSearch_empty() {
         val keyword = ""
         runBlocking {
-            assertEquals(0, meliSearchDataSource.getProductsFromSearch(keyword).size)
+            assertEquals(0, meliSearchDataSourceImpl.getProductsFromSearch(keyword).size)
         }
     }
 
@@ -51,7 +51,7 @@ class MeliSearchDataSourceTest {
         `when`(responseMock.productList).thenReturn(productEntity)
         runBlocking {
             `when`(meliProductService.getProductsFromSearch(keyword)).thenReturn(responseMock)
-            assertEquals(4, meliSearchDataSource.getProductsFromSearch(keyword).size)
+            assertEquals(4, meliSearchDataSourceImpl.getProductsFromSearch(keyword).size)
         }
     }
 }

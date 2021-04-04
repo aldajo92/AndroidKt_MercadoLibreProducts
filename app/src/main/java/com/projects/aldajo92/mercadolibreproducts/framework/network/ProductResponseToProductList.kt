@@ -16,13 +16,14 @@ class ProductResponseToProductList @Inject constructor() :
      * Map an instance of a [ProductResponse] to a [Product] model
      */
     override fun map(inputValue: List<ProductResponse>): List<Product> {
-        return inputValue.map { product ->
+        return inputValue.map { productDTO ->
             Product(
-                product.id,
-                product.title,
-                product.price,
-                imgUrl = product.thumbnail ?: "",
-                imgId = product.thumbnailId ?: ""
+                productDTO.id,
+                productDTO.title,
+                productDTO.price,
+                imgUrl = productDTO.thumbnail ?: "",
+                imgId = productDTO.thumbnailId ?: "",
+                productUrl = productDTO.meliLink
             )
         }
     }

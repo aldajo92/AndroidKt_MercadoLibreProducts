@@ -9,5 +9,6 @@ data class ProductResponse(
     @Json(name = "currency_id") val currency: String,
     @Json(name = "available_quantity") val stock: Int,
     val thumbnail: String? = "",
-    @Json(name = "thumbnail_id") val thumbnailId: String? = ""
+    @Json(name = "thumbnail_id") val thumbnailId: String? = "",
+    @Json(name = "permalink") val meliLink: String = ""
 )

@@ -6,9 +6,15 @@
 
 ## References ##
 
+RecyclerView:
+- [RecyclerView 2020: a modern way of dealing with lists in Android using DataBinding](https://fraggjkee.medium.com/recyclerview-2020-a-modern-way-of-dealing-with-lists-in-android-using-databinding-d97abf5fb55f)
+- [Getting screen width on API Level 30 (Android 11)](https://stackoverflow.com/questions/63407883/getting-screen-width-on-api-level-30-android-11-getdefaultdisplay-and-getme)
+- [How to databinding image loading with Glide?](https://stackoverflow.com/questions/56889880/how-to-databinding-image-loading-with-glide)
+
 Github Actions:
 - [Setup CI For Android Apps Using GitHub Actions // Android CI Tutorial](https://www.youtube.com/watch?v=K9w01h4-Wnc)
 
+Coroutines:
 - [coroutines](https://developer.android.com/topic/libraries/architecture/coroutines)
 
 Retrofit:
@@ -19,13 +25,18 @@ Room:
 - [Test and debug your database](https://developer.android.com/training/data-storage/room/testing-db)
 
 Architechture:
+- [Clean Architecture Tutorial for Android: Getting Started](https://www.raywenderlich.com/3595916-clean-architecture-tutorial-for-android-getting-started)
 - [Injecting Android ViewModels With Dagger2 in a Clean Architecture](https://betterprogramming.pub/injecting-android-viewmodels-with-dagger2-in-clean-architecture-744c1fe81530)
 - [Android Dagger 2 Injection For Fragment (Kotlin)](https://code.luasoftware.com/tutorials/android/dagger2-injection-for-fragment/)
 - [Create a complete Android app from scratch ~ Retrofit - Dagger2 - Room - MVVM and LiveData](https://nsaveek.medium.com/create-a-complete-android-app-from-scratch-retrofit-dagger2-room-mvvm-and-livedata-92052987ff59)
 - [The “Real” Repository Pattern in Android](https://proandroiddev.com/the-real-repository-pattern-in-android-efba8662b754)
 - [Injecting ViewModel — hard to easy](https://medium.com/mobile-app-development-publication/injecting-viewmodel-from-hard-to-easy-c06c0fe1c8e9)
 
+ViewModel:
+- [Should I include LifecycleOwner in ViewModel?](https://stackoverflow.com/questions/48396092/should-i-include-lifecycleowner-in-viewmodel)
+
 Navigation:
+- [Get started with the Navigation component](https://developer.android.com/guide/navigation/navigation-getting-started)
 - [Pass data between destinations](https://developer.android.com/guide/navigation/navigation-pass-data)
 - [Using Safe Args With the Android Navigation Component](https://www.raywenderlich.com/19327407-using-safe-args-with-the-android-navigation-component)
 

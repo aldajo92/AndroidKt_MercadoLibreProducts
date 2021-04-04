@@ -11,7 +11,6 @@ import android.view.WindowInsets
 import android.view.inputmethod.EditorInfo
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.projects.aldajo92.mercadolibreproducts.BR
 import com.projects.aldajo92.mercadolibreproducts.R
 import com.projects.aldajo92.mercadolibreproducts.databinding.FragmentDashboardBinding
@@ -54,12 +53,6 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
         })
 
         binding.recyclerViewProducts.adapter = productAdapter
-//        binding.recyclerViewProducts.layoutManager =
-//            LinearLayoutManager(
-//                activity,
-//                LinearLayoutManager.VERTICAL,
-//                false
-//            )
 
         binding.recyclerViewProducts.layoutManager = GridLayoutManager(
             activity,
@@ -105,21 +98,6 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
             displayMetrics.widthPixels
         }
         return (screenWidth / posterWidth)
-
-
-//        val outMetrics = DisplayMetrics()
-//        currentWindowMetrics.getMetrics(outMetrics)
-//
-//        val screenWidth = outMetrics.widthPixels.toFloat()
-//        return Math.round(screenWidth / posterWidth)
-//        return 0
-//        val insets: Insets = windowMetrics.windowInsets
-//            .getInsetsIgnoringVisibility(WindowInsets.Type.systemBars())
-//        val display: Display? = activity?.windowManager?.defaultDisplay
-//        val outMetrics = DisplayMetrics()
-//        display.getMetrics(outMetrics)
-//        val screenWidth = outMetrics.widthPixels.toFloat()
-//        return Math.round(screenWidth / posterWidth)
     }
 
 }

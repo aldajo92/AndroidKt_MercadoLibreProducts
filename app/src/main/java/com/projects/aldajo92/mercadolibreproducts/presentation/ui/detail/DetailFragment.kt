@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.projects.aldajo92.mercadolibreproducts.databinding.FragmentDetailBinding
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
 import javax.inject.Inject
@@ -28,8 +29,15 @@ class DetailFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.model = args.product
-        viewModel.product = args.product
+        val product = args.product
+        binding.model = product
+        binding.viewModel = viewModel
+        viewModel.product = product
+        viewModel.getProductDetail()
+
+        Glide.with(this)
+            .load("https://http2.mlstatic.com/D_${product.imgId}-O.jpg")
+            .into(binding.imageViewPicture)
     }
 
 }

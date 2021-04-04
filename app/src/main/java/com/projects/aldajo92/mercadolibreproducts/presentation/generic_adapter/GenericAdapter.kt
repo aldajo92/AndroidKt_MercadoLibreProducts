@@ -31,8 +31,12 @@ class GenericAdapter<T>(private val dashBoardListener: DashBoardListener<T>) :
         holder.binding.executePendingBindings()
     }
 
-    fun updateData(newItems: List<GenericItem<T>>) {
+    fun clearAndUpdateData(newItems: List<GenericItem<T>>) {
         this.items.clear()
+        updateData(newItems)
+    }
+
+    fun updateData(newItems: List<GenericItem<T>>) {
         this.items.addAll(newItems)
         notifyDataSetChanged()
     }

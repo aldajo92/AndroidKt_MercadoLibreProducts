@@ -34,7 +34,7 @@ class MeliSearchDataSourceTest {
     fun getProductsFromSearch_empty() {
         val keyword = ""
         runBlocking {
-            assertEquals(0, meliSearchDataSourceImpl.getProductsFromSearch(keyword).size)
+            assertEquals(0, meliSearchDataSourceImpl.getProductsFromSearch(keyword, 0).size)
         }
     }
 
@@ -51,7 +51,7 @@ class MeliSearchDataSourceTest {
         `when`(responseMock.productList).thenReturn(productEntity)
         runBlocking {
             `when`(meliProductService.getProductsFromSearch(keyword)).thenReturn(responseMock)
-            assertEquals(4, meliSearchDataSourceImpl.getProductsFromSearch(keyword).size)
+            assertEquals(4, meliSearchDataSourceImpl.getProductsFromSearch(keyword, 0).size)
         }
     }
 }

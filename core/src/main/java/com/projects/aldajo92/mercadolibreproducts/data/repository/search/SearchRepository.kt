@@ -9,6 +9,6 @@ interface SearchRepository<T> {
     /**
      * Retrieve a list of Meli products, from the cache
      */
-    suspend fun getProductsFromSearch(keywords: String): List<T>?
+    suspend fun getProductsFromSearch(keywords: String, offset: Int): List<T>?
 
 }

@@ -21,7 +21,7 @@ class DashBoardViewModel @Inject constructor(
             try {
                 val listResult = repository.getProductsFromSearch(keyword)
 
-                _response.value = DashBoardEvents.ProductsSuccess(listResult)
+                _response.value = DashBoardEvents.ProductsSuccess(listResult ?: emptyList())
             } catch (e: Exception) {
                 _response.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
             }

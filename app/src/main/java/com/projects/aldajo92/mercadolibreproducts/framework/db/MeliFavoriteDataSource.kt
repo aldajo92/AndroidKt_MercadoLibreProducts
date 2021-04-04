@@ -12,7 +12,19 @@ class MeliFavoriteDataSource(
         return dao.getAllProducts()
     }
 
+    override suspend fun getById(id: String): FavoriteProductEntity {
+        return dao.getFavoriteProduct(id)
+    }
+
     override suspend fun storeData(data: FavoriteProductEntity) {
         dao.addFavoriteProduct(data)
+    }
+
+    override suspend fun removeById(id: String) {
+        dao.deleteById(id)
+    }
+
+    override suspend fun removeAll() {
+        dao.deleteAll()
     }
 }

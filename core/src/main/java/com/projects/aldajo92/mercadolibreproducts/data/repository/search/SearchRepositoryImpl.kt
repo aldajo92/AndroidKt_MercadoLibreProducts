@@ -4,14 +4,14 @@ import com.projects.aldajo92.mercadolibreproducts.data.datasource.ApiSearchDataS
 import com.projects.aldajo92.mercadolibreproducts.data.mapper.EntityListMapper
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
 
-class SearchProductApiRepositoryImpl<T> constructor(
+class SearchRepositoryImpl<T> constructor(
     private val apiSearch: ApiSearchDataSource<T>,
     private val listMapper: EntityListMapper<T, Product>
 ) : SearchRepository<Product> {
 
-    override suspend fun getProductsFromSearch(keywords: String): List<Product> {
-        val result = apiSearch.getProductsFromSearch(keywords)
-        return listMapper.map(result)
+    override suspend fun getProductsFromSearch(keywords: String): List<Product>? {
+        if (keywords.isEmpty()) return null
+        return listMapper.map(apiSearch.getProductsFromSearch(keywords))
     }
 
 }

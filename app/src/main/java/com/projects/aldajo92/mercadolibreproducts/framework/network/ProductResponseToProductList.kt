@@ -23,7 +23,8 @@ class ProductResponseToProductList @Inject constructor() :
                 productDTO.price,
                 imgUrl = productDTO.thumbnail ?: "",
                 imgId = productDTO.thumbnailId ?: "",
-                productUrl = productDTO.meliLink
+                productUrl = productDTO.meliLink,
+                currency = productDTO.currency ?: ""
             )
         }
     }

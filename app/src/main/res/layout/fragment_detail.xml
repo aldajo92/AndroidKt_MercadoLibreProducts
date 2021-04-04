@@ -97,6 +97,7 @@
                     android:layout_marginEnd="@dimen/margin_large"
                     android:layout_marginBottom="@dimen/spacing_xsmall"
                     android:src="@drawable/ic_star"
+                    android:onClick="@{ () -> viewModel.saveToFavorites() }"
                     app:layout_constraintBottom_toBottomOf="@+id/textView_titlePrice"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView_titlePrice" />
@@ -108,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_small"
                     android:layout_marginTop="@dimen/margin_large"
-                    android:text="@{ Integer.toString(model.price) }"
+                    android:text="@{ viewModel.priceFormat }"
                     app:layout_constraintEnd_toStartOf="@+id/image_view_ic_star"
                     app:layout_constraintStart_toEndOf="@+id/textView_titlePrice"
                     app:layout_constraintTop_toBottomOf="@+id/imageView_picture"

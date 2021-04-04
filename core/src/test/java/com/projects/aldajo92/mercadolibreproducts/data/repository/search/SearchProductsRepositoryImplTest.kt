@@ -11,7 +11,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
-import org.mockito.Mockito.mock
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 
@@ -21,7 +20,7 @@ class SearchProductsRepositoryImplTest {
     @Mock
     lateinit var apiSearchDataSource: ApiSearchDataSource<ProductDTO>
 
-    private lateinit var searchProductApiRepositoryImpl: SearchProductApiRepositoryImpl<ProductDTO>
+    private lateinit var searchRepositoryImpl: SearchRepositoryImpl<ProductDTO>
 
     private val productListEntityMapper: EntityListMapper<ProductDTO, Product> by lazy {
         object : EntityListMapper<ProductDTO, Product> {
@@ -36,7 +35,7 @@ class SearchProductsRepositoryImplTest {
     @Before
     fun setup() {
         MockitoAnnotations.openMocks(this)
-        searchProductApiRepositoryImpl = SearchProductApiRepositoryImpl(
+        searchRepositoryImpl = SearchRepositoryImpl(
             apiSearchDataSource,
             productListEntityMapper
         )
@@ -51,7 +50,7 @@ class SearchProductsRepositoryImplTest {
         )
         runBlocking {
             `when`(apiSearchDataSource.getProductsFromSearch(keyword)).thenReturn(productDTO)
-            assertEquals(2, searchProductApiRepositoryImpl.getProductsFromSearch(keyword).size)
+            assertEquals(2, searchRepositoryImpl.getProductsFromSearch(keyword)?.size)
         }
     }
 

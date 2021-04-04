@@ -11,11 +11,13 @@ class DetailRepositoryImpl<T, S> constructor(
     private val mapperDescription: EntityMapper<S, ProductDescription>
 ) : DetailRepository<ProductDetail, ProductDescription> {
 
-    override suspend fun getProductDetail(id: String): ProductDetail {
+    override suspend fun getProductDetail(id: String): ProductDetail? {
+        if (id.isEmpty()) return null
         return mapper.map(apiDetailSearch.getProductDetail(id))
     }
 
-    override suspend fun getProductDescription(id: String): ProductDescription {
+    override suspend fun getProductDescription(id: String): ProductDescription? {
+        if (id.isEmpty()) return null
         return mapperDescription.map(apiDetailSearch.getProductDetailDescription(id))
     }
 

@@ -11,7 +11,7 @@ import com.projects.aldajo92.mercadolibreproducts.data.repository.detail.DetailR
 import com.projects.aldajo92.mercadolibreproducts.data.repository.favorites.FavoritesRepository
 import com.projects.aldajo92.mercadolibreproducts.data.repository.favorites.FavoritesRepositoryImpl
 import com.projects.aldajo92.mercadolibreproducts.data.repository.search.SearchRepository
-import com.projects.aldajo92.mercadolibreproducts.data.repository.search.SearchProductApiRepositoryImpl
+import com.projects.aldajo92.mercadolibreproducts.data.repository.search.SearchRepositoryImpl
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
 import com.projects.aldajo92.mercadolibreproducts.domain.ProductDescription
 import com.projects.aldajo92.mercadolibreproducts.domain.ProductDetail
@@ -66,7 +66,7 @@ class AppModule {
         apiSearch: ApiSearchDataSource<ProductResponse>,
         mapper: ProductResponseToProductList
     ): SearchRepository<Product> {
-        return SearchProductApiRepositoryImpl(apiSearch, mapper)
+        return SearchRepositoryImpl(apiSearch, mapper)
     }
 
     @Provides

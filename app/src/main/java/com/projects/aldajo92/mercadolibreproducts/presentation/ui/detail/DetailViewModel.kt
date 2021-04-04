@@ -23,22 +23,33 @@ class DetailViewModel @Inject constructor(
 
     val description = ObservableField("")
 
-    fun getProductDetail(){
+    val priceFormat = ObservableField("")
+
+    fun getProductDetail() {
+        priceFormat.set("${product.currency} $${product.price}")
+
         viewModelScope.launch {
-            productDetail = detailRepository.getProductDetail(product.meliId)
-            productDescription = detailRepository.getProductDescription(product.meliId)
+            detailRepository.getProductDetail(product.meliId)?.let {
+                productDetail = it
+            }
+        }
 
-            description.set(productDescription.text)
-
-            Timber.i(productDescription.text)
+        viewModelScope.launch {
+            detailRepository.getProductDescription(product.meliId)?.let {
+                productDescription = it
+                description.set(it.text)
+                Timber.i(it.text)
+            }
         }
     }
 
 
     fun saveToFavorites() {
-        viewModelScope.launch {
-            favoritesRepository.saveToFavorites(product)
-        }
+        Timber.i("Saved to favorites")
+        // TODO: Not finished yet
+//        viewModelScope.launch {
+//            favoritesRepository.saveToFavorites(product)
+//        }
     }
 
 }

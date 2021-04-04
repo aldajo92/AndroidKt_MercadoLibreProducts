@@ -9,19 +9,5 @@ abstract class GenericItem<T>(
     @LayoutRes val layoutId: Int,
     val variableId: Int
 ) {
-
-//    private var binding : ViewDataBinding? = null
-//    private var listener : DashBoardListener<T>? = null
-
-    abstract fun bind(binding: ViewDataBinding, listener : DashBoardListener<T>)
-
-//    fun bind(binding: ViewDataBinding, listener : DashBoardListener<T>) {
-//        this.binding = binding
-//        this.listener = listener
-
-//        binding.setVariable(variableId, data)
-//        binding.root.setOnClickListener {
-//            listener.onClickItem(this)
-//        }
-//    }
+    abstract fun bind(binding: ViewDataBinding, listener: DashBoardListener<T>)
 }

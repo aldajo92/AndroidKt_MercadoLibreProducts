@@ -12,7 +12,10 @@ import javax.inject.Singleton
 interface MeliProductService {
 
     @GET("sites/MCO/search")
-    suspend fun getProductsFromSearch(@Query("q") word: String): SearchResponse
+    suspend fun getProductsFromSearch(
+        @Query("q") word: String,
+        @Query("offset") offset: Int = 0
+    ): SearchResponse
 
     @GET("items/{id}")
     suspend fun getProductDetail(@Path("id") id: String): ProductDetailResponse

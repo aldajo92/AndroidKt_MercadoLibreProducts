@@ -17,6 +17,7 @@ import com.projects.aldajo92.mercadolibreproducts.databinding.FragmentDashboardB
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.GenericAdapter
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.GenericItem
+import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.PaginationMoviesScrollListener
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
 import dagger.android.support.AndroidSupportInjection
 import timber.log.Timber
@@ -30,15 +31,27 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
 
     private lateinit var binding: FragmentDashboardBinding
 
-    private val productAdapter by lazy {
-        GenericAdapter(this)
-    }
+    private lateinit var productAdapter: GenericAdapter<Product>
+
+    private lateinit var gridLayoutManager: GridLayoutManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDashboardBinding.inflate(inflater)
+        productAdapter = GenericAdapter(this)
+
+        gridLayoutManager = GridLayoutManager(
+            activity,
+            calculateBestSpanCount(resources.getDimensionPixelSize(R.dimen.width_image_home))
+        )
+
+        binding.recyclerViewProducts.apply {
+            layoutManager = gridLayoutManager
+            adapter = productAdapter
+
+        }
         return binding.root
     }
 
@@ -48,16 +61,19 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
         viewModel.response.observe(viewLifecycleOwner, {
             when (it) {
                 is DashBoardEvents.ProductsSuccess -> handleResponse(it.productModels)
+                is DashBoardEvents.ProductsPaginationSuccess -> handlePaginationResponse(it.productModels)
                 is DashBoardEvents.ErrorMessage -> Timber.e(it.message)
             }
         })
 
-        binding.recyclerViewProducts.adapter = productAdapter
-
-        binding.recyclerViewProducts.layoutManager = GridLayoutManager(
-            activity,
-            calculateBestSpanCount(resources.getDimensionPixelSize(R.dimen.width_image_home))
-        );
+        binding.recyclerViewProducts.addOnScrollListener(
+            object : PaginationMoviesScrollListener(gridLayoutManager, 50) {
+                override fun onLoadMore(currentPage: Int, totalItemCount: Int) {
+                    Timber.i("currentPage: $currentPage + totalItemCount: $totalItemCount")
+                    viewModel.getProductsByPagination(totalItemCount)
+                }
+            }
+        )
 
         binding.searchEditText.setOnEditorActionListener { textView, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
@@ -68,6 +84,13 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
     }
 
     private fun handleResponse(productModels: List<Product>) {
+        val itemList = productModels.map {
+            DashBoardItem(it, R.layout.item_dashboard, BR.model)
+        }
+        productAdapter.clearAndUpdateData(itemList)
+    }
+
+    private fun handlePaginationResponse(productModels: List<Product>) {
         val itemList = productModels.map {
             DashBoardItem(it, R.layout.item_dashboard, BR.model)
         }

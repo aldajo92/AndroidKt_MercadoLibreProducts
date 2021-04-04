@@ -1,5 +1,6 @@
 package com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard
 
+import android.app.Activity
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.projects.aldajo92.mercadolibreproducts.BR
@@ -58,11 +60,13 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        handleResponse(viewModel.productItems)
+
         viewModel.response.observe(viewLifecycleOwner, {
             when (it) {
-                is DashBoardEvents.ProductsSuccess -> handleResponse(it.productModels)
-                is DashBoardEvents.ProductsPaginationSuccess -> handlePaginationResponse(it.productModels)
-                is DashBoardEvents.ErrorMessage -> Timber.e(it.message)
+                is DashBoardEvents.ProductsSuccess -> handleNewResponse(it.getDataOnce())
+                is DashBoardEvents.ProductsPaginationSuccess -> handlePaginationResponse(it.getDataOnce())
+                is DashBoardEvents.ErrorMessage -> Timber.e(it.getDataOnce())
             }
         })
 
@@ -78,28 +82,36 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
         binding.searchEditText.setOnEditorActionListener { textView, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 viewModel.performSearch(textView.text.toString())
+                hideKeyboardFrom(requireActivity().baseContext, textView)
                 true
             } else false
         }
     }
 
-    private fun handleResponse(productModels: List<Product>) {
-        val itemList = productModels.map {
-            DashBoardItem(it, R.layout.item_dashboard, BR.model)
-        }
-        productAdapter.clearAndUpdateData(itemList)
-    }
-
-    private fun handlePaginationResponse(productModels: List<Product>) {
-        val itemList = productModels.map {
-            DashBoardItem(it, R.layout.item_dashboard, BR.model)
-        }
-        productAdapter.updateData(itemList)
-    }
-
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
+    }
+
+    private fun handleNewResponse(productModels: List<Product>?) {
+        binding.recyclerViewProducts.smoothScrollToPosition(0)
+        handleResponse(productModels)
+    }
+
+    private fun handleResponse(productModels: List<Product>?) {
+        productModels?.map {
+            DashBoardItem(it, R.layout.item_dashboard, BR.model)
+        }?.let {
+            productAdapter.clearAndUpdateData(it)
+        }
+    }
+
+    private fun handlePaginationResponse(productModels: List<Product>?) {
+        productModels?.map {
+            DashBoardItem(it, R.layout.item_dashboard, BR.model)
+        }?.let {
+            productAdapter.updateData(it)
+        }
     }
 
     override fun onClickItem(item: GenericItem<Product>) {
@@ -121,6 +133,11 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
             displayMetrics.widthPixels
         }
         return (screenWidth / posterWidth)
+    }
+
+    private fun hideKeyboardFrom(context: Context, view: View) {
+        val imm: InputMethodManager = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
 }

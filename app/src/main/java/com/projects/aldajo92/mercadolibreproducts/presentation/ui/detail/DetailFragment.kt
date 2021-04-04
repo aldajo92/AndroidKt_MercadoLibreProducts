@@ -1,12 +1,11 @@
 package com.projects.aldajo92.mercadolibreproducts.presentation.ui.detail
 
 import android.os.Bundle
-import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import androidx.navigation.fragment.navArgs
+import androidx.transition.TransitionInflater
 import com.bumptech.glide.Glide
 import com.projects.aldajo92.mercadolibreproducts.databinding.FragmentDetailBinding
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
@@ -33,15 +32,17 @@ class DetailFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDetailBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val product = args.product
         binding.model = product
         binding.viewModel = viewModel
+        binding.imageViewPicture.transitionName = product.meliId
+
         viewModel.product = product
         viewModel.getProductDetail()
 

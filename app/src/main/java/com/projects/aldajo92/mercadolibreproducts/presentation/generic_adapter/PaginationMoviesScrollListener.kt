@@ -1,10 +1,10 @@
 package com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter
 
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class PaginationMoviesScrollListener(
-    private val layoutManager: GridLayoutManager,
+    private val layoutManager: LinearLayoutManager,
     private val visibleThreshold: Int
 ) : RecyclerView.OnScrollListener() {
 

@@ -20,7 +20,6 @@
             android:id="@+id/imageView_picture"
             android:layout_width="@dimen/width_image_home"
             android:layout_height="@dimen/height_image_home"
-            android:transitionName="@{ model.meliId }"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,13 +29,12 @@
             style="@style/TextViewSmallWhite"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{ model.title }"
             android:padding="@dimen/spacing_xsmall"
+            android:text="@{ model.title }"
             app:layout_constraintEnd_toEndOf="@+id/imageView_picture"
             app:layout_constraintStart_toStartOf="@+id/imageView_picture"
             app:layout_constraintTop_toBottomOf="@+id/imageView_picture"
             tools:text="0000" />
-
 
         <TextView
             android:id="@+id/textView_votes"

@@ -12,12 +12,13 @@ data class DashBoardItem(
     val modelId: Int
 ) : GenericItem<Product>(product, layout, modelId) {
 
-    private var binding: ItemDashboardBinding? = null
+    var binding: ItemDashboardBinding? = null
 
     override fun bind(binding: ViewDataBinding, listener: DashBoardListener<Product>) {
         this.binding = binding as ItemDashboardBinding
 
         this.binding?.apply {
+            imageViewPicture.transitionName = product.meliId
             setVariable(variableId, data)
             root.setOnClickListener {
                 listener.onClickItem(this@DashBoardItem)

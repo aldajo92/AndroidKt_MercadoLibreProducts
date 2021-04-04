@@ -136,7 +136,8 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
     }
 
     private fun hideKeyboardFrom(context: Context, view: View) {
-        val imm: InputMethodManager = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val imm: InputMethodManager =
+            context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 

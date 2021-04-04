@@ -13,12 +13,12 @@ class DetailRepositoryImpl<T, S> constructor(
 
     override suspend fun getProductDetail(id: String): ProductDetail? {
         if (id.isEmpty()) return null
-        return mapper.map(apiDetailSearch.getProductDetail(id))
+        return apiDetailSearch.getProductDetail(id)?.let { mapper.map(it) }
     }
 
     override suspend fun getProductDescription(id: String): ProductDescription? {
         if (id.isEmpty()) return null
-        return mapperDescription.map(apiDetailSearch.getProductDetailDescription(id))
+        return apiDetailSearch.getProductDetailDescription(id)?.let { mapperDescription.map(it) }
     }
 
 }

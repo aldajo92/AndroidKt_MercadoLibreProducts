@@ -9,13 +9,13 @@ class MeliDetailDataSourceImpl constructor(
     private val meliProductService: MeliProductService
 ) : ApiDetailDataSource<ProductDetailResponse, ProductDescriptionResponse> {
 
-    override suspend fun getProductDetail(keywords: String): ProductDetailResponse {
-        if (keywords.isBlank()) return ProductDetailResponse()
+    override suspend fun getProductDetail(keywords: String): ProductDetailResponse? {
+        if (keywords.isBlank()) return null
         return meliProductService.getProductDetail(keywords)
     }
 
-    override suspend fun getProductDetailDescription(keywords: String): ProductDescriptionResponse {
-        if (keywords.isBlank()) return ProductDescriptionResponse()
+    override suspend fun getProductDetailDescription(keywords: String): ProductDescriptionResponse? {
+        if (keywords.isBlank()) return null
         return meliProductService.getProductDescription(keywords)
     }
 

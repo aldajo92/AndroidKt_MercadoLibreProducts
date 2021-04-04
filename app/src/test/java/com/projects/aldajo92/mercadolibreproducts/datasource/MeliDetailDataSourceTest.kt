@@ -57,10 +57,10 @@ class MeliDetailDataSourceTest {
         runBlocking {
             `when`(meliProductService.getProductDetail(keyword)).thenReturn(productDetailResponse)
             val productDetail = meliDetailDataSourceImpl.getProductDetail(keyword)
-            assertEquals(10, productDetail.initial_quantity)
-            assertEquals(10, productDetail.available_quantity)
-            assertEquals(0, productDetail.sold_quantity)
-            assertEquals("new", productDetail.condition)
+            assertEquals(10, productDetail?.initial_quantity)
+            assertEquals(10, productDetail?.available_quantity)
+            assertEquals(0, productDetail?.sold_quantity)
+            assertEquals("new", productDetail?.condition)
         }
     }
 
@@ -77,9 +77,9 @@ class MeliDetailDataSourceTest {
                 productDescriptionResponse
             )
             val productDescription = meliDetailDataSourceImpl.getProductDetailDescription(keyword)
-            assertEquals("description", productDescription.description)
-            assertEquals("last_updated", productDescription.last_updated)
-            assertEquals("date_created", productDescription.date_created)
+            assertEquals("description", productDescription?.description)
+            assertEquals("last_updated", productDescription?.last_updated)
+            assertEquals("date_created", productDescription?.date_created)
         }
     }
 }

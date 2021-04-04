@@ -1,9 +1,11 @@
 package com.projects.aldajo92.mercadolibreproducts.presentation.ui.detail
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.projects.aldajo92.mercadolibreproducts.databinding.FragmentDetailBinding
@@ -19,11 +21,19 @@ class DetailFragment : BaseFragment() {
 
     private val args: DetailFragmentArgs by navArgs()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedElementEnterTransition = TransitionInflater
+            .from(context)
+            .inflateTransition(android.R.transition.move)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentDetailBinding.inflate(inflater)
+        binding = FragmentDetailBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -38,6 +48,9 @@ class DetailFragment : BaseFragment() {
         Glide.with(this)
             .load("https://http2.mlstatic.com/D_${product.imgId}-O.jpg")
             .into(binding.imageViewPicture)
+
+        binding.executePendingBindings()
     }
+
 
 }

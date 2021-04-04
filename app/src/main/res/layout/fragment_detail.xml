@@ -73,6 +73,7 @@
                     android:layout_marginTop="@dimen/margin_large"
                     android:layout_marginEnd="@dimen/margin_large"
                     android:layout_marginBottom="@dimen/margin_normal"
+                    android:transitionName="@{ model.meliId }"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_title_original"
@@ -96,8 +97,8 @@
                     android:layout_height="0dp"
                     android:layout_marginEnd="@dimen/margin_large"
                     android:layout_marginBottom="@dimen/spacing_xsmall"
-                    android:src="@drawable/ic_star"
                     android:onClick="@{ () -> viewModel.saveToFavorites() }"
+                    android:src="@drawable/ic_star"
                     app:layout_constraintBottom_toBottomOf="@+id/textView_titlePrice"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView_titlePrice" />
@@ -136,8 +137,8 @@
                     android:layout_marginStart="@dimen/margin_large"
                     android:layout_marginTop="@dimen/margin_normal"
                     android:layout_marginEnd="@dimen/margin_large"
-                    android:text="@{ viewModel.description }"
                     android:focusableInTouchMode="false"
+                    android:text="@{ viewModel.description }"
                     app:layout_constraintTop_toBottomOf="@+id/textView_title_reviews"
                     tools:visibility="visible" />
 
@@ -150,10 +151,10 @@
                     android:layout_marginTop="@dimen/margin_normal"
                     android:layout_marginEnd="@dimen/margin_large"
                     android:text="@{ model.productUrl }"
-                    tools:text="http://url.com"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/recyclerView_reviews"
+                    tools:text="http://url.com"
                     tools:visibility="visible" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

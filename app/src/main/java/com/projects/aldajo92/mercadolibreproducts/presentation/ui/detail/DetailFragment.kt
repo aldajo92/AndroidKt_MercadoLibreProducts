@@ -5,11 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.projects.aldajo92.mercadolibreproducts.databinding.FragmentDetailBinding
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
-import timber.log.Timber
+import javax.inject.Inject
 
 class DetailFragment : BaseFragment() {
+
+    @Inject
+    lateinit var viewModel: DetailViewModel
 
     private lateinit var binding: FragmentDetailBinding
 
@@ -27,7 +31,13 @@ class DetailFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         val product = args.product
         binding.model = product
-        Timber.i(product.title)
+        binding.viewModel = viewModel
+        viewModel.product = product
+        viewModel.getProductDetail()
+
+        Glide.with(this)
+            .load("https://http2.mlstatic.com/D_${product.imgId}-O.jpg")
+            .into(binding.imageViewPicture)
     }
 
 }

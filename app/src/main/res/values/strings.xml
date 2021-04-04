@@ -14,4 +14,5 @@
     <string name="detail.save">Save</string>
     <string name="detail.cancel">Cancel</string>
     <string name="dashboard.search_text">Search Word</string>
+    <string name="dashboard.detail_title">Detail</string>
 </resources>

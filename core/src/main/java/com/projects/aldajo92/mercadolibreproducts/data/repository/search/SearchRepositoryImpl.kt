@@ -9,9 +9,9 @@ class SearchRepositoryImpl<T> constructor(
     private val listMapper: EntityListMapper<T, Product>
 ) : SearchRepository<Product> {
 
-    override suspend fun getProductsFromSearch(keywords: String): List<Product>? {
+    override suspend fun getProductsFromSearch(keywords: String, offset: Int): List<Product>? {
         if (keywords.isEmpty()) return null
-        return listMapper.map(apiSearch.getProductsFromSearch(keywords))
+        return listMapper.map(apiSearch.getProductsFromSearch(keywords, offset))
     }
 
 }

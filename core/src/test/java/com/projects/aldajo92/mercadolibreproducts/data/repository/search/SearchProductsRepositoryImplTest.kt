@@ -49,8 +49,8 @@ class SearchProductsRepositoryImplTest {
             ProductDTO("1235", "title2", 20000)
         )
         runBlocking {
-            `when`(apiSearchDataSource.getProductsFromSearch(keyword)).thenReturn(productDTO)
-            assertEquals(2, searchRepositoryImpl.getProductsFromSearch(keyword)?.size)
+            `when`(apiSearchDataSource.getProductsFromSearch(keyword, 0)).thenReturn(productDTO)
+            assertEquals(2, searchRepositoryImpl.getProductsFromSearch(keyword, 0)?.size)
         }
     }
 

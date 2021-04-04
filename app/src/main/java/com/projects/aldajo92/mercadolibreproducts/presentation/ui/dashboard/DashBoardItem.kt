@@ -12,7 +12,7 @@ data class DashBoardItem(
     val modelId: Int
 ) : GenericItem<Product>(product, layout, modelId) {
 
-    private var binding: ItemDashboardBinding? = null
+    var binding: ItemDashboardBinding? = null
 
     override fun bind(binding: ViewDataBinding, listener: DashBoardListener<Product>) {
         this.binding = binding as ItemDashboardBinding
@@ -24,7 +24,7 @@ data class DashBoardItem(
             }
 
             // TODO: Format URL with extension-function
-            if(product.imgId.isNotBlank()){
+            if (product.imgId.isNotBlank()) {
                 Glide.with(binding.root.context)
                     .load("https://http2.mlstatic.com/D_${product.imgId}-O.jpg")
                     .into(binding.imageViewPicture)

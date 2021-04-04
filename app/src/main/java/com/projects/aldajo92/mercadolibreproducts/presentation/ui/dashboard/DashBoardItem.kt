@@ -18,14 +18,13 @@ data class DashBoardItem(
         this.binding = binding as ItemDashboardBinding
 
         this.binding?.apply {
-            imageViewPicture.transitionName = product.meliId
             setVariable(variableId, data)
             root.setOnClickListener {
                 listener.onClickItem(this@DashBoardItem)
             }
 
             // TODO: Format URL with extension-function
-            if(product.imgId.isNotBlank()){
+            if (product.imgId.isNotBlank()) {
                 Glide.with(binding.root.context)
                     .load("https://http2.mlstatic.com/D_${product.imgId}-O.jpg")
                     .into(binding.imageViewPicture)

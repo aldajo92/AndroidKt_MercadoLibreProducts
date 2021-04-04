@@ -22,9 +22,8 @@ class DetailFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedElementEnterTransition = TransitionInflater
-            .from(context)
-            .inflateTransition(android.R.transition.move)
+        sharedElementEnterTransition =
+            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
     }
 
     override fun onCreateView(
@@ -37,12 +36,9 @@ class DetailFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val product = args.product
         binding.model = product
         binding.viewModel = viewModel
-        binding.imageViewPicture.transitionName = product.meliId
-
         viewModel.product = product
         viewModel.getProductDetail()
 

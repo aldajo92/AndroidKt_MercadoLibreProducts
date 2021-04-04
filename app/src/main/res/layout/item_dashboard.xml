@@ -20,6 +20,7 @@
             android:id="@+id/imageView_picture"
             android:layout_width="@dimen/width_image_home"
             android:layout_height="@dimen/height_image_home"
+            android:transitionName="@{ model.meliId }"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

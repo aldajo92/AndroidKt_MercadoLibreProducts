@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.view.WindowInsets
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.projects.aldajo92.mercadolibreproducts.BR
@@ -115,8 +116,14 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
     }
 
     override fun onClickItem(item: GenericItem<Product>) {
-        val action = DashBoardFragmentDirections.actionDashboardFragmentToDetailFragment(item.data)
-        findNavController().navigate(action)
+        (item as DashBoardItem).binding?.imageViewPicture?.let {
+            val extras = FragmentNavigatorExtras(
+                it to item.product.meliId
+            )
+            val action =
+                DashBoardFragmentDirections.actionDashboardFragmentToDetailFragment(item.data)
+            findNavController().navigate(action, extras)
+        }
     }
 
     private fun calculateBestSpanCount(posterWidth: Int): Int {

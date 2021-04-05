@@ -71,6 +71,8 @@ dependencies {
 
     implementation "android.arch.navigation:navigation-fragment-ktx:$android_navigation"
     implementation "android.arch.navigation:navigation-ui-ktx:$android_navigation"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$android_navigation"
+
     implementation "com.google.android.material:material:$android_material"
 
     implementation "com.google.android.material:material:$material"

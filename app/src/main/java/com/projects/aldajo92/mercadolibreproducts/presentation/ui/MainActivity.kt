@@ -7,6 +7,7 @@ import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.projects.aldajo92.mercadolibreproducts.databinding.ActivityMainBinding
 import dagger.android.support.DaggerAppCompatActivity
+import timber.log.Timber
 
 class MainActivity : DaggerAppCompatActivity() {
 
@@ -20,7 +21,6 @@ class MainActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
 
         setupViews()

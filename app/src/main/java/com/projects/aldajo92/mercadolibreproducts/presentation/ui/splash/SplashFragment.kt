@@ -29,7 +29,7 @@ class SplashFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         Handler(Looper.getMainLooper()).postDelayed({
             findNavController().navigate(R.id.action_splashFragment_to_dashboardFragment)
-        }, 2000)
+        }, 1000)
     }
 
 }

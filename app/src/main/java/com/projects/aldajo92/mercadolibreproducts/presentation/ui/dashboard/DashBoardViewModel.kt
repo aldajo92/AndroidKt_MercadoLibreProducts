@@ -8,7 +8,9 @@ import com.projects.aldajo92.mercadolibreproducts.data.repository.search.SearchR
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class DashBoardViewModel @Inject constructor(
     private val repository: SearchRepository<Product>
 ) : ViewModel() {
@@ -32,7 +34,7 @@ class DashBoardViewModel @Inject constructor(
                 _productItems.clear()
                 _productItems.addAll(listResult)
             } catch (e: Exception) {
-//                _responseLiveData.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
+                // _responseLiveData.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
             }
         }
     }
@@ -46,7 +48,7 @@ class DashBoardViewModel @Inject constructor(
                     _productItems.addAll(listResult)
                 }
             } catch (e: Exception) {
-//                _responseLiveData.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
+                // _responseLiveData.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
             }
         }
     }

@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_dashboard">
         <action
             android:id="@+id/action_dashboardFragment_to_detailFragment"
-            app:destination="@id/detailFragment" >
+            app:destination="@id/detailFragment">
             <argument
                 android:name="product"
                 app:argType="com.projects.aldajo92.mercadolibreproducts.domain.Product" />
@@ -34,7 +34,7 @@
         android:id="@+id/detailFragment"
         android:name="com.projects.aldajo92.mercadolibreproducts.presentation.ui.detail.DetailFragment"
         android:label="DetailFragment"
-        tools:layout="@layout/fragment_detail" >
+        tools:layout="@layout/fragment_detail">
         <argument
             android:name="product"
             app:argType="com.projects.aldajo92.mercadolibreproducts.domain.Product" />
@@ -44,6 +44,6 @@
         android:id="@+id/favoritesFragment"
         android:name="com.projects.aldajo92.mercadolibreproducts.presentation.ui.favorites.FavoritesFragment"
         android:label="FavoritesFragment"
-        tools:layout="@layout/fragment_favorites"/>
+        tools:layout="@layout/fragment_favorites" />
 
 </navigation>

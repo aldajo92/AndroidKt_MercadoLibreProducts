@@ -28,5 +28,4 @@ class FavoritesFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-
 }

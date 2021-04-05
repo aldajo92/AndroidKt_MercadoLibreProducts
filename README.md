@@ -55,7 +55,11 @@ To guarantee the Dependency Inversion principle from SOLID, this project impleme
 
 ## Navigation Graph ##
 
-![Taken from: "The “Real” Repository Pattern in Android"](media/navigation.png)
+![](media/navigation.png)
+
+## PR validations with Github Actions ##
+Check [android_build.yml](.github/workflows/android_build.yml) to get more information about the container and jobs configurations:
+![](media/githubactions.png)
 
 ## References ##
 

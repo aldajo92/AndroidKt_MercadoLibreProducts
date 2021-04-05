@@ -5,19 +5,16 @@ import com.projects.aldajo92.mercadolibreproducts.domain.Product
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.DashBoardViewModel
 import com.projects.aldajo92.mercadolibreproducts.test_utils.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.verifyZeroInteractions
-import java.lang.Exception
 
 
 @RunWith(MockitoJUnitRunner::class)
@@ -61,7 +58,6 @@ class DashBoardViewModelTest {
         )
 
         runBlockingTest {
-            `when`(searchRepository.getProductsFromSearch("1234", 0)).thenReturn(mockProduct)
             dashboardViewModel.performFirstSearch("1234")
             verify(searchRepository).getProductsFromSearch("1234", 0)
         }

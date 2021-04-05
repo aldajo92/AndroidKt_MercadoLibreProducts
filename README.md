@@ -104,3 +104,6 @@ Testing Frameworks:
 - [How to mock final classes on Kotlin using Mockito 2 (KAD 23)](https://antonioleiva.com/mockito-2-kotlin/)
 - [Mocking Coroutines](https://proandroiddev.com/mocking-coroutines-7024073a8c09)
 - [How to verify a method is called two times with mockito verify](https://stackoverflow.com/questions/14889951/how-to-verify-a-method-is-called-two-times-with-mockito-verify)
+
+## Author
+Alejandro Daniel José Gómez Flórez (@aldajo92)

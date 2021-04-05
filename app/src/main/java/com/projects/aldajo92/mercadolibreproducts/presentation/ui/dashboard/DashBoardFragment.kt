@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.view.WindowInsets
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import androidx.navigation.NavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -38,10 +39,14 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
 
     private lateinit var gridLayoutManager: GridLayoutManager
 
+    private lateinit var navController: NavController
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        showBottomNavigation(true)
+
         binding = FragmentDashboardBinding.inflate(inflater)
         productAdapter = GenericAdapter(this)
 
@@ -53,8 +58,10 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
         binding.recyclerViewProducts.apply {
             layoutManager = gridLayoutManager
             adapter = productAdapter
-
         }
+
+        navController = findNavController()
+
         return binding.root
     }
 
@@ -117,12 +124,10 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
 
     override fun onClickItem(item: GenericItem<Product>) {
         (item as DashBoardItem).binding?.imageViewPicture?.let {
-            val extras = FragmentNavigatorExtras(
-                it to item.product.meliId
-            )
+            val extras = FragmentNavigatorExtras(it to item.product.meliId)
             val action =
                 DashBoardFragmentDirections.actionDashboardFragmentToDetailFragment(item.data)
-            findNavController().navigate(action, extras)
+            navController.navigate(action, extras)
         }
     }
 

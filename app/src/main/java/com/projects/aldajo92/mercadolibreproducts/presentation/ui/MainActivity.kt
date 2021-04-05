@@ -1,19 +1,44 @@
 package com.projects.aldajo92.mercadolibreproducts.presentation.ui
 
 import android.os.Bundle
-import android.view.Window
-import com.projects.aldajo92.mercadolibreproducts.R
+import android.view.View
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.projects.aldajo92.mercadolibreproducts.databinding.ActivityMainBinding
 import dagger.android.support.DaggerAppCompatActivity
+import timber.log.Timber
 
 class MainActivity : DaggerAppCompatActivity() {
 
-    private var binding: ActivityMainBinding? = null
+    private lateinit var binding: ActivityMainBinding
+
+    private lateinit var bottomNavView: BottomNavigationView
+
+    private lateinit var navHostFragment: NavHostFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setupViews()
+    }
+
+    private fun setupViews() {
+        bottomNavView = binding.bottomNavView
+        navHostFragment =
+            (supportFragmentManager.findFragmentById(binding.fragmentContainer.id) as NavHostFragment)
+
+        NavigationUI.setupWithNavController(bottomNavView, navHostFragment.navController)
+    }
+
+    fun showBottomNavigation() {
+        bottomNavView.visibility = View.VISIBLE
+    }
+
+    fun hideBottomNavigation() {
+        bottomNavView.visibility = View.GONE
     }
 }

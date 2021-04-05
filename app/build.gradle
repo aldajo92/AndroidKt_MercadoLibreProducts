@@ -36,6 +36,10 @@ android {
         viewBinding true
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
     // taken from: https://stackoverflow.com/questions/44342455/more-than-one-file-was-found-with-os-independent-path-meta-inf-license
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
@@ -67,6 +71,8 @@ dependencies {
 
     implementation "android.arch.navigation:navigation-fragment-ktx:$android_navigation"
     implementation "android.arch.navigation:navigation-ui-ktx:$android_navigation"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$android_navigation"
+
     implementation "com.google.android.material:material:$android_material"
 
     implementation "com.google.android.material:material:$material"
@@ -105,6 +111,7 @@ dependencies {
     testImplementation "org.mockito.kotlin:mockito-kotlin:$mockito_kotlin"
     androidTestImplementation "androidx.test.ext:junit:$androidJunit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$expressonCore"
-
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test"
     testImplementation "androidx.room:room-testing:$room_version"
+    testImplementation "androidx.arch.core:core-testing:$core_testing"
 }

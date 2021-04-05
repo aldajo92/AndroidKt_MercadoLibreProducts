@@ -4,8 +4,10 @@
     <dimen name="spacing_xsmall">5dp</dimen>
     <dimen name="spacing_small">10dp</dimen>
     <dimen name="spacing_medium">20dp</dimen>
+    <dimen name="spacing_large">30dp</dimen>
 
     <!--Font values-->
+    <dimen name="font_medium">14sp</dimen>
     <dimen name="font_normal">20sp</dimen>
     <dimen name="font_large">30sp</dimen>
 

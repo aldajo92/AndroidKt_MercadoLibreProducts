@@ -1,10 +1,11 @@
-package com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard
+package com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.adapter
 
 import androidx.databinding.ViewDataBinding
 import com.bumptech.glide.Glide
 import com.projects.aldajo92.mercadolibreproducts.databinding.ItemDashboardBinding
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.GenericItem
+import com.projects.aldajo92.mercadolibreproducts.presentation.utils.formatMeliImgUrl
 
 data class DashBoardItem(
     val product: Product,
@@ -19,14 +20,13 @@ data class DashBoardItem(
 
         this.binding?.apply {
             setVariable(variableId, data)
-            root.setOnClickListener {
+            viewCover.setOnClickListener {
                 listener.onClickItem(this@DashBoardItem)
             }
 
-            // TODO: Format URL with extension-function
             if (product.imgId.isNotBlank()) {
                 Glide.with(binding.root.context)
-                    .load("https://http2.mlstatic.com/D_${product.imgId}-O.jpg")
+                    .load(product.formatMeliImgUrl())
                     .into(binding.imageViewPicture)
             }
         }

@@ -15,4 +15,8 @@
     <string name="detail.cancel">Cancel</string>
     <string name="dashboard.search_text">Search Word</string>
     <string name="dashboard.detail_title">Detail</string>
+
+    <string name="search">Dashboard</string>
+    <string name="favorites">Favorites</string>
+    <string name="detail_price_text">Price:</string>
 </resources>

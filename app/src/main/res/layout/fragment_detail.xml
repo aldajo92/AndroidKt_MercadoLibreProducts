@@ -6,10 +6,6 @@
     <data>
 
         <variable
-            name="model"
-            type="com.projects.aldajo92.mercadolibreproducts.domain.Product" />
-
-        <variable
             name="viewModel"
             type="com.projects.aldajo92.mercadolibreproducts.presentation.ui.detail.DetailViewModel" />
     </data>
@@ -58,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_large"
                     android:layout_marginEnd="@dimen/margin_large"
-                    android:text="@{ model.title }"
+                    android:text="@{ viewModel.productField.title }"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -72,7 +68,7 @@
                     android:layout_marginTop="@dimen/margin_large"
                     android:layout_marginEnd="@dimen/margin_large"
                     android:layout_marginBottom="@dimen/margin_normal"
-                    android:transitionName="@{ model.meliId }"
+                    android:transitionName="@{ viewModel.productField.meliId }"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_title_original"
@@ -86,7 +82,7 @@
                     android:layout_marginStart="@dimen/margin_large"
                     android:layout_marginTop="@dimen/margin_large"
                     android:layout_marginEnd="@dimen/margin_large"
-                    android:text="Price:"
+                    android:text="@string/detail_price_text"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView_picture" />
 
@@ -96,8 +92,8 @@
                     android:layout_height="0dp"
                     android:layout_marginEnd="@dimen/margin_large"
                     android:layout_marginBottom="@dimen/spacing_xsmall"
-                    android:onClick="@{ () -> viewModel.saveToFavorites() }"
-                    android:src="@drawable/ic_star"
+                    android:onClick="@{ () -> viewModel.toggleFavorites() }"
+                    app:favoriteMarkState="@{ viewModel.isFavorite }"
                     app:layout_constraintBottom_toBottomOf="@+id/textView_titlePrice"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView_titlePrice" />
@@ -109,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_small"
                     android:layout_marginTop="@dimen/margin_large"
-                    android:text="@{ viewModel.priceFormat }"
+                    app:formatProductPrice="@{ viewModel.productField }"
                     app:layout_constraintEnd_toStartOf="@+id/image_view_ic_star"
                     app:layout_constraintStart_toEndOf="@+id/textView_titlePrice"
                     app:layout_constraintTop_toBottomOf="@+id/imageView_picture"
@@ -137,7 +133,7 @@
                     android:layout_marginTop="@dimen/margin_normal"
                     android:layout_marginEnd="@dimen/margin_large"
                     android:focusableInTouchMode="false"
-                    android:text="@{ viewModel.description }"
+                    android:text="@{ viewModel.productField.description }"
                     app:layout_constraintTop_toBottomOf="@+id/textView_title_reviews"
                     tools:visibility="visible" />
 
@@ -149,7 +145,7 @@
                     android:layout_marginStart="@dimen/margin_large"
                     android:layout_marginTop="@dimen/margin_normal"
                     android:layout_marginEnd="@dimen/margin_large"
-                    android:text="@{ model.productUrl }"
+                    android:text="@{ viewModel.productField.productUrl }"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/recyclerView_reviews"

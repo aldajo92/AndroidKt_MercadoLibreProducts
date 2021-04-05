@@ -9,5 +9,8 @@ data class FavoriteProductEntity(
     val title : String,
     val price : Int,
     val currency : String,
-    val stock : Int
+    val stock : Int,
+    val description: String,
+    val imgId: String = "",
+    val productUrl: String = ""
 )

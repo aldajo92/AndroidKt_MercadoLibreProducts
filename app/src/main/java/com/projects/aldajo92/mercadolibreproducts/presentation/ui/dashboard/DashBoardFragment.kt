@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.view.WindowInsets
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import androidx.navigation.NavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -22,6 +23,10 @@ import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.G
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.GenericItem
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.PaginationMoviesScrollListener
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
+import com.projects.aldajo92.mercadolibreproducts.presentation.events.DashBoardEvents
+import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.adapter.DashBoardItem
+import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.adapter.DashBoardListener
+import com.projects.aldajo92.mercadolibreproducts.presentation.utils.calculateBestSpanCount
 import dagger.android.support.AndroidSupportInjection
 import timber.log.Timber
 import javax.inject.Inject
@@ -42,19 +47,24 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        showBottomNavigation(true)
+
         binding = FragmentDashboardBinding.inflate(inflater)
         productAdapter = GenericAdapter(this)
 
         gridLayoutManager = GridLayoutManager(
             activity,
-            calculateBestSpanCount(resources.getDimensionPixelSize(R.dimen.width_image_home))
+            calculateBestSpanCount(
+                requireActivity(),
+                resources.getDimensionPixelSize(R.dimen.width_image_home)
+            )
         )
 
         binding.recyclerViewProducts.apply {
             layoutManager = gridLayoutManager
             adapter = productAdapter
-
         }
+
         return binding.root
     }
 
@@ -63,11 +73,11 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
 
         handleResponse(viewModel.productItems)
 
-        viewModel.response.observe(viewLifecycleOwner, {
+        viewModel.responseLiveData.observe(viewLifecycleOwner, {
             when (it) {
                 is DashBoardEvents.ProductsSuccess -> handleNewResponse(it.getDataOnce())
                 is DashBoardEvents.ProductsPaginationSuccess -> handlePaginationResponse(it.getDataOnce())
-                is DashBoardEvents.ErrorMessage -> Timber.e(it.getDataOnce())
+                is DashBoardEvents.ErrorMessage -> showToastMessage(it.getDataOnce())
             }
         })
 
@@ -82,7 +92,7 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
 
         binding.searchEditText.setOnEditorActionListener { textView, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                viewModel.performSearch(textView.text.toString())
+                viewModel.performFirstSearch(textView.text.toString())
                 hideKeyboardFrom(requireActivity().baseContext, textView)
                 true
             } else false
@@ -117,29 +127,11 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
 
     override fun onClickItem(item: GenericItem<Product>) {
         (item as DashBoardItem).binding?.imageViewPicture?.let {
-            val extras = FragmentNavigatorExtras(
-                it to item.product.meliId
-            )
+            val extras = FragmentNavigatorExtras(it to item.product.meliId)
             val action =
                 DashBoardFragmentDirections.actionDashboardFragmentToDetailFragment(item.data)
             findNavController().navigate(action, extras)
         }
-    }
-
-    private fun calculateBestSpanCount(posterWidth: Int): Int {
-        val screenWidth = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            activity?.windowManager?.currentWindowMetrics?.let { windowMetrics ->
-                val insets = windowMetrics
-                    .windowInsets
-                    .getInsetsIgnoringVisibility(WindowInsets.Type.systemBars())
-                windowMetrics.bounds.width() - insets.left - insets.right
-            } ?: 0
-        } else {
-            val displayMetrics = DisplayMetrics()
-            activity?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
-            displayMetrics.widthPixels
-        }
-        return (screenWidth / posterWidth)
     }
 
     private fun hideKeyboardFrom(context: Context, view: View) {

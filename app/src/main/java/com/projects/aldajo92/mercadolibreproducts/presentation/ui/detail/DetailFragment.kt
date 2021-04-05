@@ -4,12 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import com.bumptech.glide.Glide
+import com.projects.aldajo92.mercadolibreproducts.R
 import com.projects.aldajo92.mercadolibreproducts.databinding.FragmentDetailBinding
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
+import com.projects.aldajo92.mercadolibreproducts.presentation.utils.formatMeliImgUrl
 import javax.inject.Inject
+
 
 class DetailFragment : BaseFragment() {
 
@@ -22,6 +26,7 @@ class DetailFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         sharedElementEnterTransition =
             TransitionInflater.from(context).inflateTransition(android.R.transition.move)
     }
@@ -34,20 +39,25 @@ class DetailFragment : BaseFragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        showBottomNavigation(false)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val product = args.product
-        binding.model = product
+        val isFavorite = args.isFavorite
+
         binding.viewModel = viewModel
-        viewModel.product = product
-        viewModel.getProductDetail()
+
+        viewModel.setupProductInformation(product, isFavorite)
 
         Glide.with(this)
-            .load("https://http2.mlstatic.com/D_${product.imgId}-O.jpg")
+            .load(product.formatMeliImgUrl())
             .into(binding.imageViewPicture)
 
         binding.executePendingBindings()
     }
-
 
 }

@@ -18,7 +18,17 @@ class FavoriteEntityToProductList @Inject constructor() :
      */
     override fun map(inputValue: List<FavoriteProductEntity>): List<Product> {
         return inputValue.map { product ->
-            Product(product.meliId, product.title, product.price)
+            Product(
+                product.meliId,
+                product.title,
+                product.price,
+                false,
+                "",
+                product.imgId,
+                product.productUrl,
+                product.currency,
+                product.description
+            )
         }
     }
 }

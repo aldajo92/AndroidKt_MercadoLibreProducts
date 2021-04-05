@@ -1,6 +1,6 @@
 package com.projects.aldajo92.mercadolibreproducts.presentation.events
 
-open class DataEvent<out T>(private val content: T) {
+open class DataEvent<out T>(private val content: T?) {
 
     var hasBeenHandled = false
         private set // External read but not write

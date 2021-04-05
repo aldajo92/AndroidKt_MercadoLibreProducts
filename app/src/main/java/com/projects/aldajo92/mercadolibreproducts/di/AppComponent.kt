@@ -7,6 +7,7 @@ import com.projects.aldajo92.mercadolibreproducts.di.modules.AppModule
 import com.projects.aldajo92.mercadolibreproducts.di.modules.db.DBModule
 import com.projects.aldajo92.mercadolibreproducts.di.modules.ui.FragmentBuilderModule
 import com.projects.aldajo92.mercadolibreproducts.di.modules.network.NetworkModule
+import com.projects.aldajo92.mercadolibreproducts.di.modules.repository.RepositoryModule
 import com.projects.aldajo92.mercadolibreproducts.di.viewmodel.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
@@ -23,6 +24,7 @@ import javax.inject.Singleton
         FragmentBuilderModule::class,
         ViewModelModule::class,
         NetworkModule::class,
+        RepositoryModule::class,
         DBModule::class
     ]
 )

@@ -12,9 +12,7 @@
         tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment"
-            app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true" />
+            app:destination="@id/dashboardFragment" />
     </fragment>
 
     <fragment
@@ -40,25 +38,25 @@
             app:argType="com.projects.aldajo92.mercadolibreproducts.domain.Product" />
         <argument
             android:name="isFavorite"
-            app:argType="boolean"
-            android:defaultValue="false" />
+            android:defaultValue="false"
+            app:argType="boolean" />
     </fragment>
 
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.projects.aldajo92.mercadolibreproducts.presentation.ui.favorites.FavoritesFragment"
         android:label="FavoritesFragment"
-        tools:layout="@layout/fragment_favorites" >
+        tools:layout="@layout/fragment_favorites">
         <action
             android:id="@+id/action_favoritesFragment_to_detailFragment"
-            app:destination="@id/detailFragment" >
+            app:destination="@id/detailFragment">
             <argument
                 android:name="product"
                 app:argType="com.projects.aldajo92.mercadolibreproducts.domain.Product" />
             <argument
                 android:name="isFavorite"
-                app:argType="boolean"
-                android:defaultValue="true" />
+                android:defaultValue="true"
+                app:argType="boolean" />
         </action>
     </fragment>
 

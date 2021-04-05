@@ -3,7 +3,7 @@ package com.projects.aldajo92.mercadolibreproducts.datasource
 import com.projects.aldajo92.mercadolibreproducts.framework.network.datasources.MeliSearchDataSourceImpl
 import com.projects.aldajo92.mercadolibreproducts.framework.network.models.search.ProductResponse
 import com.projects.aldajo92.mercadolibreproducts.framework.network.models.search.SearchResponse
-import com.projects.aldajo92.mercadolibreproducts.framework.network.service.MeliProductService
+import com.projects.aldajo92.mercadolibreproducts.framework.network.service.MeliApiService
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -20,14 +20,14 @@ import kotlin.random.Random
 class MeliSearchDataSourceTest {
 
     @Mock
-    lateinit var meliProductService: MeliProductService
+    lateinit var meliApiService: MeliApiService
 
     lateinit var meliSearchDataSourceImpl: MeliSearchDataSourceImpl
 
     @Before
     fun setup() {
         MockitoAnnotations.openMocks(this)
-        meliSearchDataSourceImpl = MeliSearchDataSourceImpl(meliProductService)
+        meliSearchDataSourceImpl = MeliSearchDataSourceImpl(meliApiService)
     }
 
     @Test
@@ -50,7 +50,7 @@ class MeliSearchDataSourceTest {
         val responseMock = mock(SearchResponse::class.java)
         `when`(responseMock.productList).thenReturn(productEntity)
         runBlocking {
-            `when`(meliProductService.getProductsFromSearch(keyword)).thenReturn(responseMock)
+            `when`(meliApiService.getProductsFromSearch(keyword)).thenReturn(responseMock)
             assertEquals(4, meliSearchDataSourceImpl.getProductsFromSearch(keyword, 0).size)
         }
     }

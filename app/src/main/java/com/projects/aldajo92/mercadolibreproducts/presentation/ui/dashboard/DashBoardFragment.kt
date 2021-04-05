@@ -2,16 +2,12 @@ package com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard
 
 import android.app.Activity
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowInsets
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import androidx.navigation.NavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -25,14 +21,14 @@ import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.P
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
 import com.projects.aldajo92.mercadolibreproducts.presentation.events.DashBoardEvents
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.adapter.DashBoardItem
-import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.adapter.DashBoardListener
+import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.ItemListener
 import com.projects.aldajo92.mercadolibreproducts.presentation.utils.calculateBestSpanCount
 import dagger.android.support.AndroidSupportInjection
 import timber.log.Timber
 import javax.inject.Inject
 
 
-class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
+class DashBoardFragment : BaseFragment(), ItemListener<Product> {
 
     @Inject
     lateinit var viewModel: DashBoardViewModel

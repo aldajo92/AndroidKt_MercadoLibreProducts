@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Meli-Products</string>
+
+    <!--Dashboard Screen-->
+    <string name="dashboard.title">Meli Dashboard</string>
+
+    <!--Detail Screen-->
+    <string name="detail.title">Detalle</string>
+    <string name="detail.name_field">Nombre:</string>
+
+    <string name="detail.description_field">Descripción:</string>
+    <string name="detail.price">Precio:</string>
+
+    <string name="dashboard.search_text">Palabras para búsqueda</string>
+    <string name="dashboard.detail_title">Detalle</string>
+
+    <string name="search">Búsqueda</string>
+    <string name="favorites">Favoritos</string>
+</resources>

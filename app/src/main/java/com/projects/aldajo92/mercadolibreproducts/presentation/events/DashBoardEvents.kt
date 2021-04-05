@@ -11,4 +11,7 @@ sealed class DashBoardEvents<out T>(val content: T?) : DataEvent<T>(content) {
     class ProductsPaginationSuccess(productModels: List<Product>?) :
         DashBoardEvents<List<Product>>(productModels)
 
+    class OpenURL(openUrl: String) :
+        DashBoardEvents<String>(openUrl)
+
 }

@@ -40,4 +40,10 @@
             app:argType="com.projects.aldajo92.mercadolibreproducts.domain.Product" />
     </fragment>
 
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.projects.aldajo92.mercadolibreproducts.presentation.ui.favorites.FavoritesFragment"
+        android:label="FavoritesFragment"
+        tools:layout="@layout/fragment_favorites"/>
+
 </navigation>

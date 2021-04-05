@@ -42,6 +42,8 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        showBottomNavigation(true)
+
         binding = FragmentDashboardBinding.inflate(inflater)
         productAdapter = GenericAdapter(this)
 

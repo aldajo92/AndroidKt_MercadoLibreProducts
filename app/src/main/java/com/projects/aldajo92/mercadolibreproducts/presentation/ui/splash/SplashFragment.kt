@@ -10,8 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.projects.aldajo92.mercadolibreproducts.R
 import com.projects.aldajo92.mercadolibreproducts.databinding.FragmentSplashBinding
+import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
 
-class SplashFragment : Fragment() {
+class SplashFragment : BaseFragment() {
 
     private lateinit var binding: FragmentSplashBinding
 
@@ -19,6 +20,7 @@ class SplashFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        showBottomNavigation(false)
         binding = FragmentSplashBinding.inflate(inflater)
         return binding.root
     }

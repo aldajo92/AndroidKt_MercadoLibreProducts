@@ -17,7 +17,7 @@ class DetailViewModel @Inject constructor(
     private val favoritesRepository: FavoritesRepository<Product>
 ) : ViewModel() {
 
-    lateinit var product: Product
+    private var product: Product? = null
     private lateinit var productDetail: ProductDetail
     private lateinit var productDescription: ProductDescription
 
@@ -25,15 +25,27 @@ class DetailViewModel @Inject constructor(
 
     val priceFormat = ObservableField("")
 
-    fun getProductDetail() {
-        priceFormat.set("${product.currency} $${product.price}")
+    fun getProductInformation(product: Product) {
+        this.product = product
 
+        priceFormat.set("${product.currency} $${product.price}")
+        
+        this.product?.let {
+            getProductDetail(it)
+            getProductDescription(it)
+        }
+        
+    }
+    
+    private fun getProductDetail(product: Product){
         viewModelScope.launch {
             detailRepository.getProductDetail(product.meliId)?.let {
                 productDetail = it
             }
         }
+    }
 
+    private fun getProductDescription(product: Product){
         viewModelScope.launch {
             detailRepository.getProductDescription(product.meliId)?.let {
                 productDescription = it

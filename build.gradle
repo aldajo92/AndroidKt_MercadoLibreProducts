@@ -28,6 +28,7 @@ ext {
     androidJunit = '1.1.2'
     expressonCore = '3.3.0'
     legacy_support_v4 = '1.0.0'
+    coroutines_test = '1.4.3'
 }
 
 buildscript {

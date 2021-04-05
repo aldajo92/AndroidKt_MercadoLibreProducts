@@ -39,8 +39,7 @@ class DetailFragment : BaseFragment() {
         val product = args.product
         binding.model = product
         binding.viewModel = viewModel
-        viewModel.product = product
-        viewModel.getProductDetail()
+        viewModel.getProductInformation(product)
 
         Glide.with(this)
             .load("https://http2.mlstatic.com/D_${product.imgId}-O.jpg")

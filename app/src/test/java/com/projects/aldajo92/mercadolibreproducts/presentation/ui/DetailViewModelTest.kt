@@ -72,9 +72,7 @@ class DetailViewModelTest {
             "product.com",
             "COP"
         )
-        runBlocking {
-            detailViewModel.setupProductInformation(mockProduct, true)
-            verifyZeroInteractions(detailRepository)
-        }
+        detailViewModel.setupProductInformation(mockProduct, true)
+        verifyZeroInteractions(detailRepository)
     }
 }

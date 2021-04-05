@@ -1,8 +1,8 @@
 package com.projects.aldajo92.mercadolibreproducts.presentation.ui
 
-import com.projects.aldajo92.mercadolibreproducts.data.repository.search.SearchRepository
+import com.projects.aldajo92.mercadolibreproducts.data.repository.favorites.FavoritesRepository
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
-import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.DashBoardViewModel
+import com.projects.aldajo92.mercadolibreproducts.presentation.ui.favorites.FavoritesViewModel
 import com.projects.aldajo92.mercadolibreproducts.test_utils.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -12,19 +12,19 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
+import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.kotlin.verify
-import org.mockito.kotlin.verifyZeroInteractions
 
 
 @RunWith(MockitoJUnitRunner::class)
-class DashBoardViewModelTest {
+class FavoritesViewModelTest {
 
     @Mock
-    lateinit var searchRepository: SearchRepository<Product>
+    lateinit var favoritesRepository: FavoritesRepository<Product>
 
-    lateinit var dashboardViewModel: DashBoardViewModel
+    lateinit var favoriteViewModel: FavoritesViewModel
 
     @ExperimentalCoroutinesApi
     @get:Rule
@@ -33,21 +33,15 @@ class DashBoardViewModelTest {
     @Before
     fun setup() {
         MockitoAnnotations.openMocks(this)
-        dashboardViewModel = DashBoardViewModel(searchRepository)
+        favoriteViewModel = FavoritesViewModel(favoritesRepository)
     }
 
     @Test
-    fun performSearch_emptyKey_doesNothing() {
-        dashboardViewModel.performFirstSearch("")
-        verifyZeroInteractions(searchRepository)
-    }
+    fun getFavoritesProducts() {
+        favoriteViewModel.getFavoriteProducts()
 
-    @Test
-    @ExperimentalCoroutinesApi
-    fun performSearch_notEmptyKey_getSearchFromRepository() {
         runBlocking {
-            dashboardViewModel.performFirstSearch("1234")
-            verify(searchRepository).getProductsFromSearch("1234", 0)
+            verify(favoritesRepository).getFavoritesList()
         }
     }
 

@@ -24,10 +24,14 @@ class FavoritesViewModel @Inject constructor(
 
     fun getFavoriteProducts() {
         viewModelScope.launch {
-            val favoritesList = favoritesRepository.getFavoritesList()
-            _responseLiveData.value = DashBoardEvents.ProductsSuccess(favoritesList)
-            _productItems.clear()
-            _productItems.addAll(favoritesList)
+            try {
+                val favoritesList = favoritesRepository.getFavoritesList()
+                _responseLiveData.value = DashBoardEvents.ProductsSuccess(favoritesList)
+                _productItems.clear()
+                _productItems.addAll(favoritesList)
+            } catch (e: Exception) {
+
+            }
         }
     }
 

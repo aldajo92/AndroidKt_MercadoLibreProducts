@@ -8,9 +8,7 @@ import com.projects.aldajo92.mercadolibreproducts.data.repository.favorites.Favo
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
 import com.projects.aldajo92.mercadolibreproducts.domain.ProductDescription
 import com.projects.aldajo92.mercadolibreproducts.domain.ProductDetail
-import com.projects.aldajo92.mercadolibreproducts.presentation.utils.getFormattedPrice
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 class DetailViewModel @Inject constructor(
@@ -18,22 +16,25 @@ class DetailViewModel @Inject constructor(
     private val favoritesRepository: FavoritesRepository<Product>
 ) : ViewModel() {
 
-    private var product: Product? = null
+    //    private var productModel: Product? = null
     private lateinit var productDetail: ProductDetail
     private lateinit var productDescription: ProductDescription
 
     val description = ObservableField("")
 
-    val priceFormat = ObservableField("")
+    val isFavorite = ObservableField(false)
 
-    fun getProductInformation(product: Product) {
-        this.product = product
+    val productField = ObservableField<Product>()
 
-        priceFormat.set(product.getFormattedPrice())
+    fun setupProductInformation(product: Product, isFavorite: Boolean) {
+        this.productField.set(product)
+        this.isFavorite.set(isFavorite)
+//        this.productModel = product
+//        priceFormat.set(product.getFormattedPrice())
 
-        this.product?.let {
-            getProductDetail(it)
-            getProductDescription(it)
+        if (!isFavorite) {
+            getProductDetail(product)
+            getProductDescription(product)
         }
 
     }
@@ -51,18 +52,44 @@ class DetailViewModel @Inject constructor(
             detailRepository.getProductDescription(product.meliId)?.let {
                 productDescription = it
                 description.set(it.text)
-                Timber.i(it.text)
+
+                updateProduct(it)
             }
         }
     }
 
+    private fun updateProduct(description: ProductDescription) {
+        val productTmp = productField.get()
+        productField.set(
+            productTmp?.copy(
+                description = description.text
+            )
+        )
+    }
 
-    fun saveToFavorites() {
-        Timber.i("Saved to favorites")
-        // TODO: Not finished yet
-//        viewModelScope.launch {
-//            favoritesRepository.saveToFavorites(product)
-//        }
+    fun toggleFavorites() {
+        val state = !(isFavorite.get() ?: false)
+
+        if (state) saveToFavorites()
+        else removeFromFavorites()
+
+        isFavorite.set(state)
+    }
+
+    private fun saveToFavorites() {
+        productField.get()?.let {
+            viewModelScope.launch {
+                favoritesRepository.saveToFavorites(it)
+            }
+        }
+    }
+
+    private fun removeFromFavorites() {
+        productField.get()?.let {
+            viewModelScope.launch {
+                favoritesRepository.removeFromFavorites(it)
+            }
+        }
     }
 
 }

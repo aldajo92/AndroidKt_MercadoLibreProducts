@@ -22,8 +22,11 @@ class ProductToEntity @Inject constructor() :
             inputValue.meliId,
             inputValue.title,
             inputValue.price,
-            "",
-            0
+            inputValue.currency,
+            0,
+            inputValue.description,
+            inputValue.imgId,
+            inputValue.productUrl
         )
     }
 }

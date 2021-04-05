@@ -18,4 +18,5 @@
 
     <string name="search">Dashboard</string>
     <string name="favorites">Favorites</string>
+    <string name="detail_price_text">Price:</string>
 </resources>

@@ -38,6 +38,10 @@
         <argument
             android:name="product"
             app:argType="com.projects.aldajo92.mercadolibreproducts.domain.Product" />
+        <argument
+            android:name="isFavorite"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
 
     <fragment
@@ -51,6 +55,10 @@
             <argument
                 android:name="product"
                 app:argType="com.projects.aldajo92.mercadolibreproducts.domain.Product" />
+            <argument
+                android:name="isFavorite"
+                app:argType="boolean"
+                android:defaultValue="true" />
         </action>
     </fragment>
 

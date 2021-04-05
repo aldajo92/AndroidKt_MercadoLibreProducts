@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.projects.aldajo92.mercadolibreproducts.BR
 import com.projects.aldajo92.mercadolibreproducts.R
@@ -13,6 +15,7 @@ import com.projects.aldajo92.mercadolibreproducts.presentation.events.DashBoardE
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.GenericAdapter
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.GenericItem
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
+import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.DashBoardFragmentDirections
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.adapter.DashBoardItem
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.adapter.DashBoardListener
 import com.projects.aldajo92.mercadolibreproducts.presentation.utils.calculateBestSpanCount
@@ -58,6 +61,11 @@ class FavoritesFragment : BaseFragment(), DashBoardListener<Product> {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        showBottomNavigation(true)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getFavoriteProducts()
@@ -71,16 +79,21 @@ class FavoritesFragment : BaseFragment(), DashBoardListener<Product> {
         })
     }
 
+    override fun onClickItem(item: GenericItem<Product>) {
+        (item as DashBoardItem).binding?.imageViewPicture?.let {
+            val extras = FragmentNavigatorExtras(it to item.product.meliId)
+            val action =
+                FavoritesFragmentDirections.actionFavoritesFragmentToDetailFragment(item.data)
+            findNavController().navigate(action, extras)
+        }
+    }
+
     private fun handleResponse(productModels: List<Product>?) {
         productModels?.map {
             DashBoardItem(it, R.layout.item_dashboard, BR.model)
         }?.let {
             productAdapter.clearAndUpdateData(it)
         }
-    }
-
-    override fun onClickItem(item: GenericItem<Product>) {
-
     }
 
 }

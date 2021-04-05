@@ -14,6 +14,6 @@ fun Product.getFormattedPrice(): String {
     return "${this.currency} $${this.price}"
 }
 
-fun String.formatMeliImgUrl(): String {
-    return "https://http2.mlstatic.com/D_${this}-O.jpg"
+fun Product.formatMeliImgUrl(): String {
+    return "https://http2.mlstatic.com/D_${this.imgId}-O.jpg"
 }

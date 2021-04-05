@@ -53,7 +53,7 @@ class DetailViewModelTest {
             "COP"
         )
         runBlocking {
-            detailViewModel.getProductInformation(mockProduct)
+            detailViewModel.setupProductInformation(mockProduct)
             verify(detailRepository).getProductDescription(mockProduct.meliId)
             verify(detailRepository).getProductDetail(mockProduct.meliId)
         }

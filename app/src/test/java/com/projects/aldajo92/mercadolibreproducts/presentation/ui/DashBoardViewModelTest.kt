@@ -44,19 +44,6 @@ class DashBoardViewModelTest {
     @Test
     @ExperimentalCoroutinesApi
     fun performSearch_notEmptyKey_getSearchFromRepository() {
-        val mockProduct = listOf(
-            Product(
-                "1234",
-                "title",
-                2000,
-                false,
-                "url.com",
-                "imageId123",
-                "product.com",
-                "COP"
-            )
-        )
-
         runBlockingTest {
             dashboardViewModel.performFirstSearch("1234")
             verify(searchRepository).getProductsFromSearch("1234", 0)

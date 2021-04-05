@@ -16,7 +16,6 @@ class DetailViewModel @Inject constructor(
     private val favoritesRepository: FavoritesRepository<Product>
 ) : ViewModel() {
 
-    //    private var productModel: Product? = null
     private lateinit var productDetail: ProductDetail
     private lateinit var productDescription: ProductDescription
 
@@ -29,8 +28,6 @@ class DetailViewModel @Inject constructor(
     fun setupProductInformation(product: Product, isFavorite: Boolean) {
         this.productField.set(product)
         this.isFavorite.set(isFavorite)
-//        this.productModel = product
-//        priceFormat.set(product.getFormattedPrice())
 
         if (!isFavorite) {
             getProductDetail(product)

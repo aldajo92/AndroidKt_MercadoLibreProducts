@@ -39,6 +39,7 @@ Navigation:
 - [Get started with the Navigation component](https://developer.android.com/guide/navigation/navigation-getting-started)
 - [Pass data between destinations](https://developer.android.com/guide/navigation/navigation-pass-data)
 - [Using Safe Args With the Android Navigation Component](https://www.raywenderlich.com/19327407-using-safe-args-with-the-android-navigation-component)
+- [Beginner’s Guide to Bottom Navigation with Android Jetpack](https://medium.com/android-news/beginners-guide-to-bottom-navigation-with-android-jetpack-5485d2b8bbb5)
 
 Testing Frameworks:
 - [How to mock final classes on Kotlin using Mockito 2 (KAD 23)](https://antonioleiva.com/mockito-2-kotlin/)

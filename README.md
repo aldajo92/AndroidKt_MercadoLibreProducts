@@ -61,6 +61,8 @@ To guarantee the Dependency Inversion principle from SOLID, this project impleme
 Check [android_build.yml](.github/workflows/android_build.yml) to get more information about the container and jobs configurations:
 ![](media/githubactions.png)
 
+![](media/githubactions2.png)
+
 ## References ##
 
 RecyclerView:

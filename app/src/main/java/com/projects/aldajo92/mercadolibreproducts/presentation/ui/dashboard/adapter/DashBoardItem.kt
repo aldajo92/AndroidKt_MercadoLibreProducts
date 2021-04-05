@@ -1,4 +1,4 @@
-package com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard
+package com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.adapter
 
 import androidx.databinding.ViewDataBinding
 import com.bumptech.glide.Glide
@@ -19,7 +19,7 @@ data class DashBoardItem(
 
         this.binding?.apply {
             setVariable(variableId, data)
-            root.setOnClickListener {
+            viewCover.setOnClickListener {
                 listener.onClickItem(this@DashBoardItem)
             }
 

@@ -11,6 +11,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -72,6 +73,16 @@
             app:layout_constraintStart_toStartOf="@+id/imageView_picture"
             app:layout_constraintTop_toBottomOf="@+id/item_name"
             tools:text="0000" />
+
+        <View
+            android:id="@+id/view_cover"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:translationZ="@dimen/spacing_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

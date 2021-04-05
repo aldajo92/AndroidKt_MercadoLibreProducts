@@ -23,6 +23,10 @@ import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.G
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.GenericItem
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.PaginationMoviesScrollListener
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
+import com.projects.aldajo92.mercadolibreproducts.presentation.events.DashBoardEvents
+import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.adapter.DashBoardItem
+import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.adapter.DashBoardListener
+import com.projects.aldajo92.mercadolibreproducts.presentation.utils.calculateBestSpanCount
 import dagger.android.support.AndroidSupportInjection
 import timber.log.Timber
 import javax.inject.Inject
@@ -39,8 +43,6 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
 
     private lateinit var gridLayoutManager: GridLayoutManager
 
-    private lateinit var navController: NavController
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,15 +54,16 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
 
         gridLayoutManager = GridLayoutManager(
             activity,
-            calculateBestSpanCount(resources.getDimensionPixelSize(R.dimen.width_image_home))
+            calculateBestSpanCount(
+                requireActivity(),
+                resources.getDimensionPixelSize(R.dimen.width_image_home)
+            )
         )
 
         binding.recyclerViewProducts.apply {
             layoutManager = gridLayoutManager
             adapter = productAdapter
         }
-
-        navController = findNavController()
 
         return binding.root
     }
@@ -127,24 +130,8 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
             val extras = FragmentNavigatorExtras(it to item.product.meliId)
             val action =
                 DashBoardFragmentDirections.actionDashboardFragmentToDetailFragment(item.data)
-            navController.navigate(action, extras)
+            findNavController().navigate(action, extras)
         }
-    }
-
-    private fun calculateBestSpanCount(posterWidth: Int): Int {
-        val screenWidth = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            activity?.windowManager?.currentWindowMetrics?.let { windowMetrics ->
-                val insets = windowMetrics
-                    .windowInsets
-                    .getInsetsIgnoringVisibility(WindowInsets.Type.systemBars())
-                windowMetrics.bounds.width() - insets.left - insets.right
-            } ?: 0
-        } else {
-            val displayMetrics = DisplayMetrics()
-            activity?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
-            displayMetrics.widthPixels
-        }
-        return (screenWidth / posterWidth)
     }
 
     private fun hideKeyboardFrom(context: Context, view: View) {

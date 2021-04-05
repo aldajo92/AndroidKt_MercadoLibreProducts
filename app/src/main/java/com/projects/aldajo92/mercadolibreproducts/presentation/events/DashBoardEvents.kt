@@ -1,7 +1,6 @@
-package com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard
+package com.projects.aldajo92.mercadolibreproducts.presentation.events
 
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
-import com.projects.aldajo92.mercadolibreproducts.presentation.events.DataEvent
 
 sealed class DashBoardEvents<out T>(val content: T) : DataEvent<T>(content) {
     class ErrorMessage(message: String) : DashBoardEvents<String>(message)

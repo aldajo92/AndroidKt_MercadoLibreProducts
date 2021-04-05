@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.projects.aldajo92.mercadolibreproducts.data.repository.search.SearchRepository
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
+import com.projects.aldajo92.mercadolibreproducts.presentation.events.DashBoardEvents
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton

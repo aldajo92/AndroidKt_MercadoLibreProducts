@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.DashBoardListener
+import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.adapter.DashBoardListener
 
 class GenericAdapter<T>(private val dashBoardListener: DashBoardListener<T>) :
     RecyclerView.Adapter<BindingViewHolder>() {

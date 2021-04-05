@@ -8,5 +8,36 @@
         android:layout_height="match_parent"
         tools:context=".presentation.ui.dashboard.DashBoardFragment">
 
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_medium"
+            android:animateLayoutChanges="true"
+            android:hint="@string/dashboard.search_text"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:textSize="@dimen/font_normal"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerView_products"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_products"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchEditText" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

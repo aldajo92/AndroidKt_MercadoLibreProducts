@@ -1,8 +1,47 @@
 # MercadoLibre Products (Android app made in Kotlin) #
 
+## Description
+
+## Preview ##
+
+![](media/preview1.jpeg | width=100) ![](media/preview2.jpeg | width=100)
+
+## Main Features
+
+## General stack for this project: ##
+
+- Dagger 2
+- Navigation Components
+- LiveData
+- MVVM Architechture
+- Room
+- Retrofit
+- Glide
+- Coroutines
+
+## Testing tools:
+
+- Junit4
+- Mockito
+
 ## Architecture implemented ##
 
+For this project, a clean architecture was implemented based on the [Clean Architecture for Android](https://www.raywenderlich.com/3595916-clean-architecture-tutorial-for-android-getting-started) reference. This implementation considers different levels represented by the following diagram:
+
 ![Taken from: "The “Real” Repository Pattern in Android"](media/Android-Clean-Architecture.png)
+
+The "mercado-libre" app created, two modules are defined as follows:
+
+
+- [core](/core): This module contains the domain and data layers, written purely in kotlin. These layers separated guarantee reused in other modules or projects without any dependency with the framework and upper layers.
+  
+- [app](/app): This module consumes the core module, using the corresponding android implementations, covering the framework and UI layers.
+
+The interaction between each layer follows this diagram:
+
+![Taken from: "The “Real” Repository Pattern in Android"](media/layers-architecture.png)
+
+To guarantee the Dependency Inversion principle from SOLID, this project implements Dagger2 to delegate all of the injection operations.
 
 ## References ##
 

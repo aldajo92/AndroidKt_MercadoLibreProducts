@@ -22,7 +22,6 @@ class DetailFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        showBottomNavigation(false)
 
         sharedElementEnterTransition =
             TransitionInflater.from(context).inflateTransition(android.R.transition.move)
@@ -34,6 +33,11 @@ class DetailFragment : BaseFragment() {
     ): View {
         binding = FragmentDetailBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showBottomNavigation(false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

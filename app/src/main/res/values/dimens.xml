@@ -6,6 +6,7 @@
     <dimen name="spacing_medium">20dp</dimen>
 
     <!--Font values-->
+    <dimen name="font_medium">14sp</dimen>
     <dimen name="font_normal">20sp</dimen>
     <dimen name="font_large">30sp</dimen>
 

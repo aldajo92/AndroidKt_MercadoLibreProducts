@@ -8,6 +8,7 @@ import com.projects.aldajo92.mercadolibreproducts.data.repository.favorites.Favo
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
 import com.projects.aldajo92.mercadolibreproducts.domain.ProductDescription
 import com.projects.aldajo92.mercadolibreproducts.domain.ProductDetail
+import com.projects.aldajo92.mercadolibreproducts.presentation.utils.getFormattedPrice
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -28,16 +29,16 @@ class DetailViewModel @Inject constructor(
     fun getProductInformation(product: Product) {
         this.product = product
 
-        priceFormat.set("${product.currency} $${product.price}")
-        
+        priceFormat.set(product.getFormattedPrice())
+
         this.product?.let {
             getProductDetail(it)
             getProductDescription(it)
         }
-        
+
     }
-    
-    private fun getProductDetail(product: Product){
+
+    private fun getProductDetail(product: Product) {
         viewModelScope.launch {
             detailRepository.getProductDetail(product.meliId)?.let {
                 productDetail = it
@@ -45,7 +46,7 @@ class DetailViewModel @Inject constructor(
         }
     }
 
-    private fun getProductDescription(product: Product){
+    private fun getProductDescription(product: Product) {
         viewModelScope.launch {
             detailRepository.getProductDescription(product.meliId)?.let {
                 productDescription = it

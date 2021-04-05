@@ -25,6 +25,10 @@
         <item name="android:textSize">10sp</item>
     </style>
 
+    <style name="TextViewMedium" parent="TextViewSmallWhite">
+        <item name="android:textSize">@dimen/font_medium</item>
+    </style>
+
     <style name="TextViewTitleWhite" parent="TextViewSmallWhite">
         <item name="android:textSize">22sp</item>
     </style>

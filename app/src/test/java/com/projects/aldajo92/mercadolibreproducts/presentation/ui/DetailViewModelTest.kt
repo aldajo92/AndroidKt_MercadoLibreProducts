@@ -17,6 +17,7 @@ import org.mockito.Mock
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.verifyZeroInteractions
 
 
 @ExperimentalCoroutinesApi
@@ -41,7 +42,7 @@ class DetailViewModelTest {
     }
 
     @Test
-    fun getProductInformation_callsInformationFromRepository() {
+    fun getProductInformation_notFavorite_callsInformationFromRepository() {
         val mockProduct = Product(
             "1234",
             "title",
@@ -53,11 +54,27 @@ class DetailViewModelTest {
             "COP"
         )
         runBlocking {
-            detailViewModel.setupProductInformation(mockProduct)
+            detailViewModel.setupProductInformation(mockProduct, false)
             verify(detailRepository).getProductDescription(mockProduct.meliId)
             verify(detailRepository).getProductDetail(mockProduct.meliId)
         }
     }
 
-    //TODO: add other edge cases for testing
+    @Test
+    fun getProductInformation_favorite_neverCallsInformationFromRepository() {
+        val mockProduct = Product(
+            "1234",
+            "title",
+            2000,
+            false,
+            "url.com",
+            "imageId123",
+            "product.com",
+            "COP"
+        )
+        runBlocking {
+            detailViewModel.setupProductInformation(mockProduct, true)
+            verifyZeroInteractions(detailRepository)
+        }
+    }
 }

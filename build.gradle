@@ -29,6 +29,7 @@ ext {
     expressonCore = '3.3.0'
     legacy_support_v4 = '1.0.0'
     coroutines_test = '1.4.3'
+    core_testing = '2.1.0'
 }
 
 buildscript {

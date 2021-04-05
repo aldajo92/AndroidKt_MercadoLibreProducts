@@ -16,23 +16,23 @@ class DashBoardViewModel @Inject constructor(
     private val _productItems = mutableListOf<Product>()
     val productItems: List<Product> get() = _productItems
 
-    private val _response = MutableLiveData<DashBoardEvents<*>>()
-    val response: LiveData<DashBoardEvents<*>> get() = _response
+    private val _responseLiveData = MutableLiveData<DashBoardEvents<*>>()
+    val responseLiveData: LiveData<DashBoardEvents<*>> get() = _responseLiveData
 
     private var keyword: String? = null
 
-    fun performSearch(keyword: String) {
-        if (this.keyword == keyword) return
+    fun performFirstSearch(keyword: String) {
+        if (this.keyword == keyword || keyword.isEmpty()) return
 
         this.keyword = keyword
         viewModelScope.launch {
             try {
                 val listResult = repository.getProductsFromSearch(keyword, 0) ?: emptyList()
-                _response.value = DashBoardEvents.ProductsSuccess(listResult)
+                _responseLiveData.value = DashBoardEvents.ProductsSuccess(listResult)
                 _productItems.clear()
                 _productItems.addAll(listResult)
             } catch (e: Exception) {
-                _response.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
+//                _responseLiveData.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
             }
         }
     }
@@ -42,11 +42,11 @@ class DashBoardViewModel @Inject constructor(
             try {
                 keyword?.let {
                     val listResult = repository.getProductsFromSearch(it, offset) ?: emptyList()
-                    _response.value = DashBoardEvents.ProductsPaginationSuccess(listResult)
+                    _responseLiveData.value = DashBoardEvents.ProductsPaginationSuccess(listResult)
                     _productItems.addAll(listResult)
                 }
             } catch (e: Exception) {
-                _response.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
+//                _responseLiveData.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
             }
         }
     }

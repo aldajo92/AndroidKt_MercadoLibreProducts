@@ -63,11 +63,11 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
 
         handleResponse(viewModel.productItems)
 
-        viewModel.response.observe(viewLifecycleOwner, {
+        viewModel.responseLiveData.observe(viewLifecycleOwner, {
             when (it) {
                 is DashBoardEvents.ProductsSuccess -> handleNewResponse(it.getDataOnce())
                 is DashBoardEvents.ProductsPaginationSuccess -> handlePaginationResponse(it.getDataOnce())
-                is DashBoardEvents.ErrorMessage -> Timber.e(it.getDataOnce())
+                is DashBoardEvents.ErrorMessage -> showToastMessage(it.getDataOnce())
             }
         })
 
@@ -82,7 +82,7 @@ class DashBoardFragment : BaseFragment(), DashBoardListener<Product> {
 
         binding.searchEditText.setOnEditorActionListener { textView, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                viewModel.performSearch(textView.text.toString())
+                viewModel.performFirstSearch(textView.text.toString())
                 hideKeyboardFrom(requireActivity().baseContext, textView)
                 true
             } else false

@@ -1,10 +1,11 @@
-package com.projects.aldajo92.mercadolibreproducts.presentation.ui.detail
+package com.projects.aldajo92.mercadolibreproducts.presentation.ui
 
 import com.projects.aldajo92.mercadolibreproducts.data.repository.detail.DetailRepository
 import com.projects.aldajo92.mercadolibreproducts.data.repository.favorites.FavoritesRepository
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
 import com.projects.aldajo92.mercadolibreproducts.domain.ProductDescription
 import com.projects.aldajo92.mercadolibreproducts.domain.ProductDetail
+import com.projects.aldajo92.mercadolibreproducts.presentation.ui.detail.DetailViewModel
 import com.projects.aldajo92.mercadolibreproducts.test_utils.MainCoroutineRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -16,6 +17,7 @@ import org.mockito.Mock
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
+
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
@@ -56,4 +58,6 @@ class DetailViewModelTest {
             verify(detailRepository).getProductDetail(mockProduct.meliId)
         }
     }
+
+    //TODO: add other edge cases for testing
 }

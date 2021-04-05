@@ -2,11 +2,21 @@
 
 ## Description
 
+This app let to the user find products in MercadoLibre and store it in a local database, when it is marked as favorite. Only supports Colombia products (All available countries will be supported soon).
+
 ## Preview ##
 
-![](media/preview1.jpeg | width=100) ![](media/preview2.jpeg | width=100)
+<img src="media/preview1.jpeg" alt="Drawing" style="width: 200px;"/>
+<img src="media/preview2.jpeg" alt="Drawing" style="width: 200px;"/>
+
+<img src="media/preview3.jpeg" alt="Drawing" style="width: 400px;"/>
 
 ## Main Features
+- Find products in Mercado Libre Colombia (All available countries features comming soon)
+- Application supports DarkMode
+- User can mark favorite products to save it in a local database.
+- Support live rotation without loosing data.
+- Open product link to see in browser.
 
 ## General stack for this project: ##
 
@@ -42,6 +52,10 @@ The interaction between each layer follows this diagram:
 ![Taken from: "The “Real” Repository Pattern in Android"](media/layers-architecture.png)
 
 To guarantee the Dependency Inversion principle from SOLID, this project implements Dagger2 to delegate all of the injection operations.
+
+## Navigation Graph ##
+
+![Taken from: "The “Real” Repository Pattern in Android"](media/navigation.png)
 
 ## References ##
 

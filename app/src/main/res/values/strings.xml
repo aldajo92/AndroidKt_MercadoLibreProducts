@@ -7,16 +7,13 @@
     <!--Detail Screen-->
     <string name="detail.title">Detail</string>
     <string name="detail.name_field">Name:</string>
-    <string name="detail.company_field">Company:</string>
-    <string name="detail.size_field">Size:</string>
+
     <string name="detail.description_field">Description:</string>
     <string name="detail.price">Price:</string>
-    <string name="detail.save">Save</string>
-    <string name="detail.cancel">Cancel</string>
+
     <string name="dashboard.search_text">Search Word</string>
     <string name="dashboard.detail_title">Detail</string>
 
     <string name="search">Dashboard</string>
     <string name="favorites">Favorites</string>
-    <string name="detail_price_text">Price:</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.projects.aldajo92.mercadolibreproducts.presentation.ui.detail
 
 import androidx.databinding.ObservableField
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.projects.aldajo92.mercadolibreproducts.data.repository.detail.DetailRepository
@@ -8,6 +10,7 @@ import com.projects.aldajo92.mercadolibreproducts.data.repository.favorites.Favo
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
 import com.projects.aldajo92.mercadolibreproducts.domain.ProductDescription
 import com.projects.aldajo92.mercadolibreproducts.domain.ProductDetail
+import com.projects.aldajo92.mercadolibreproducts.presentation.events.DashBoardEvents
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,6 +27,9 @@ class DetailViewModel @Inject constructor(
     val isFavorite = ObservableField(false)
 
     val productField = ObservableField<Product>()
+
+    private val _eventLiveData = MutableLiveData<DashBoardEvents<*>>()
+    val eventLiveData: LiveData<DashBoardEvents<*>> get() = _eventLiveData
 
     fun setupProductInformation(product: Product, isFavorite: Boolean) {
         this.productField.set(product)
@@ -71,6 +77,12 @@ class DetailViewModel @Inject constructor(
         else removeFromFavorites()
 
         isFavorite.set(state)
+    }
+
+    fun openLink(){
+        productField.get()?.let {
+            _eventLiveData.postValue(DashBoardEvents.OpenURL(it.productUrl))
+        }
     }
 
     private fun saveToFavorites() {

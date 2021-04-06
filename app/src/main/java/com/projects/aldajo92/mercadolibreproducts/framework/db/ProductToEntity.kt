@@ -17,11 +17,10 @@ class ProductToEntity @Inject constructor() :
      * Map an instance of a [ProductResponse] to a [Product] model
      */
     override fun map(inputValue: Product): FavoriteProductEntity {
-        // TODO: fix this implementation
         return FavoriteProductEntity(
             inputValue.meliId,
             inputValue.title,
-            inputValue.price,
+            inputValue.price ?: 0.0,
             inputValue.currency,
             0,
             inputValue.description,

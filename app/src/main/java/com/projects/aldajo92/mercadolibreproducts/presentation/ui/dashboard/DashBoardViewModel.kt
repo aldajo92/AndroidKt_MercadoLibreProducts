@@ -41,7 +41,7 @@ class DashBoardViewModel @Inject constructor(
                 _productItems.addAll(listResult)
                 lastCountry = countryRepository.getSelectedCountry()?.countryId ?: ""
             } catch (e: Exception) {
-//                 _responseLiveData.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
+                 _responseLiveData.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
             }
         }
     }

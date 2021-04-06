@@ -23,7 +23,7 @@ fun Product.getFormattedPrice(): String {
         "${this.currency} ${format.format(this.price)}"
     } catch (e: IllegalArgumentException) {
         Timber.i("productId:${this.meliId} generates error: ${e.message}")
-        "[Not Available]"
+        "[Error]"
     }
 }
 

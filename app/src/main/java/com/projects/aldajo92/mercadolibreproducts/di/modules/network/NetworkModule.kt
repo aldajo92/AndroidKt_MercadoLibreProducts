@@ -1,7 +1,7 @@
 package com.projects.aldajo92.mercadolibreproducts.di.modules.network
 
 import com.projects.aldajo92.mercadolibreproducts.framework.MELI_BASE_URL
-import com.projects.aldajo92.mercadolibreproducts.framework.network.service.MeliProductService
+import com.projects.aldajo92.mercadolibreproducts.framework.network.service.MeliApiService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -31,7 +31,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    internal fun provideMovieApi(retrofit: Retrofit): MeliProductService {
-        return retrofit.create(MeliProductService::class.java)
+    internal fun provideMeliProductService(retrofit: Retrofit): MeliApiService {
+        return retrofit.create(MeliApiService::class.java)
     }
 }

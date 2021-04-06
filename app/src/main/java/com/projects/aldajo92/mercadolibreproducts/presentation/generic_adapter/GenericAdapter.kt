@@ -5,9 +5,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.adapter.DashBoardListener
 
-class GenericAdapter<T>(private val dashBoardListener: DashBoardListener<T>) :
+class GenericAdapter<T>(private val itemListener: ItemListener<T>) :
     RecyclerView.Adapter<BindingViewHolder>() {
 
     private val items = mutableListOf<GenericItem<T>>()
@@ -27,7 +26,7 @@ class GenericAdapter<T>(private val dashBoardListener: DashBoardListener<T>) :
     }
 
     override fun onBindViewHolder(holder: BindingViewHolder, position: Int) {
-        getItem(position).bind(holder.binding, dashBoardListener)
+        getItem(position).bind(holder.binding, itemListener)
         holder.binding.executePendingBindings()
     }
 

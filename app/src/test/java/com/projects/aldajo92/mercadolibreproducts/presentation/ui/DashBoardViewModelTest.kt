@@ -1,6 +1,8 @@
 package com.projects.aldajo92.mercadolibreproducts.presentation.ui
 
+import com.projects.aldajo92.mercadolibreproducts.data.repository.country.CountryRepository
 import com.projects.aldajo92.mercadolibreproducts.data.repository.search.SearchRepository
+import com.projects.aldajo92.mercadolibreproducts.domain.Country
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.DashBoardViewModel
 import com.projects.aldajo92.mercadolibreproducts.test_utils.MainCoroutineRule
@@ -22,6 +24,9 @@ import org.mockito.kotlin.verifyZeroInteractions
 class DashBoardViewModelTest {
 
     @Mock
+    lateinit var countryRepository: CountryRepository<Country>
+
+    @Mock
     lateinit var searchRepository: SearchRepository<Product>
 
     lateinit var dashboardViewModel: DashBoardViewModel
@@ -33,7 +38,7 @@ class DashBoardViewModelTest {
     @Before
     fun setup() {
         MockitoAnnotations.openMocks(this)
-        dashboardViewModel = DashBoardViewModel(searchRepository)
+        dashboardViewModel = DashBoardViewModel(countryRepository, searchRepository)
     }
 
     @Test

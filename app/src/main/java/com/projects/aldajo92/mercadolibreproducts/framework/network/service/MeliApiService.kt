@@ -1,5 +1,6 @@
 package com.projects.aldajo92.mercadolibreproducts.framework.network.service
 
+import com.projects.aldajo92.mercadolibreproducts.framework.network.models.search.CountryResponse
 import com.projects.aldajo92.mercadolibreproducts.framework.network.models.detail.ProductDescriptionResponse
 import com.projects.aldajo92.mercadolibreproducts.framework.network.models.detail.ProductDetailResponse
 import com.projects.aldajo92.mercadolibreproducts.framework.network.models.search.SearchResponse
@@ -9,10 +10,14 @@ import retrofit2.http.Query
 import javax.inject.Singleton
 
 @Singleton
-interface MeliProductService {
+interface MeliApiService {
 
-    @GET("sites/MCO/search")
+    @GET("sites")
+    suspend fun getCountries(): List<CountryResponse>?
+
+    @GET("sites/{countryId}/search")
     suspend fun getProductsFromSearch(
+        @Path("countryId") country: String,
         @Query("q") word: String,
         @Query("offset") offset: Int = 0
     ): SearchResponse

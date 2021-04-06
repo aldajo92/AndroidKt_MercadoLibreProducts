@@ -5,6 +5,7 @@ import com.bumptech.glide.Glide
 import com.projects.aldajo92.mercadolibreproducts.databinding.ItemDashboardBinding
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.GenericItem
+import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.ItemListener
 import com.projects.aldajo92.mercadolibreproducts.presentation.utils.formatMeliImgUrl
 
 data class DashBoardItem(
@@ -15,7 +16,7 @@ data class DashBoardItem(
 
     var binding: ItemDashboardBinding? = null
 
-    override fun bind(binding: ViewDataBinding, listener: DashBoardListener<Product>) {
+    override fun bind(binding: ViewDataBinding, listener: ItemListener<Product>) {
         this.binding = binding as ItemDashboardBinding
 
         this.binding?.apply {

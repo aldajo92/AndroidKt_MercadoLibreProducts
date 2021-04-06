@@ -2,6 +2,8 @@ package com.projects.aldajo92.mercadolibreproducts.data.repository.detail
 
 import com.projects.aldajo92.mercadolibreproducts.data.datasource.ApiDetailDataSource
 import com.projects.aldajo92.mercadolibreproducts.data.mapper.EntityMapper
+import com.projects.aldajo92.mercadolibreproducts.data.repository.country.CountryRepository
+import com.projects.aldajo92.mercadolibreproducts.domain.Country
 import com.projects.aldajo92.mercadolibreproducts.domain.ProductDescription
 import com.projects.aldajo92.mercadolibreproducts.domain.ProductDetail
 

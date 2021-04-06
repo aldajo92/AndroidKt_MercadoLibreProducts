@@ -15,13 +15,12 @@ import com.projects.aldajo92.mercadolibreproducts.presentation.events.DashBoardE
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.GenericAdapter
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.GenericItem
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
-import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.DashBoardFragmentDirections
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.adapter.DashBoardItem
-import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.adapter.DashBoardListener
+import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.ItemListener
 import com.projects.aldajo92.mercadolibreproducts.presentation.utils.calculateBestSpanCount
 import javax.inject.Inject
 
-class FavoritesFragment : BaseFragment(), DashBoardListener<Product> {
+class FavoritesFragment : BaseFragment(), ItemListener<Product> {
 
     @Inject
     lateinit var viewModel: FavoritesViewModel

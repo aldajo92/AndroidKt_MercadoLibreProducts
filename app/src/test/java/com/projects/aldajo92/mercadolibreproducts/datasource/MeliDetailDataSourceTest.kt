@@ -3,7 +3,7 @@ package com.projects.aldajo92.mercadolibreproducts.datasource
 import com.projects.aldajo92.mercadolibreproducts.framework.network.datasources.MeliDetailDataSourceImpl
 import com.projects.aldajo92.mercadolibreproducts.framework.network.models.detail.ProductDescriptionResponse
 import com.projects.aldajo92.mercadolibreproducts.framework.network.models.detail.ProductDetailResponse
-import com.projects.aldajo92.mercadolibreproducts.framework.network.service.MeliProductService
+import com.projects.aldajo92.mercadolibreproducts.framework.network.service.MeliApiService
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
@@ -20,14 +20,14 @@ import kotlin.random.Random
 class MeliDetailDataSourceTest {
 
     @Mock
-    lateinit var meliProductService: MeliProductService
+    lateinit var meliApiService: MeliApiService
 
     lateinit var meliDetailDataSourceImpl: MeliDetailDataSourceImpl
 
     @Before
     fun setup() {
         MockitoAnnotations.openMocks(this)
-        meliDetailDataSourceImpl = MeliDetailDataSourceImpl(meliProductService)
+        meliDetailDataSourceImpl = MeliDetailDataSourceImpl(meliApiService)
     }
 
     @Test
@@ -55,7 +55,7 @@ class MeliDetailDataSourceTest {
             "new"
         )
         runBlocking {
-            `when`(meliProductService.getProductDetail(keyword)).thenReturn(productDetailResponse)
+            `when`(meliApiService.getProductDetail(keyword)).thenReturn(productDetailResponse)
             val productDetail = meliDetailDataSourceImpl.getProductDetail(keyword)
             assertEquals(10, productDetail?.initial_quantity)
             assertEquals(10, productDetail?.available_quantity)
@@ -73,7 +73,7 @@ class MeliDetailDataSourceTest {
             "date_created"
         )
         runBlocking {
-            `when`(meliProductService.getProductDescription(keyword)).thenReturn(
+            `when`(meliApiService.getProductDescription(keyword)).thenReturn(
                 productDescriptionResponse
             )
             val productDescription = meliDetailDataSourceImpl.getProductDetailDescription(keyword)

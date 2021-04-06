@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class FavoriteProductEntity(
     @PrimaryKey val meliId : String,
     val title : String,
-    val price : Int,
+    val price : Double,
     val currency : String,
     val stock : Int,
     val description: String,

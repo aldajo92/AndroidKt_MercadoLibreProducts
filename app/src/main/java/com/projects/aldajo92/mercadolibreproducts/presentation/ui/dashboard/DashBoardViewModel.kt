@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.projects.aldajo92.mercadolibreproducts.data.repository.country.CountryRepository
 import com.projects.aldajo92.mercadolibreproducts.data.repository.search.SearchRepository
+import com.projects.aldajo92.mercadolibreproducts.domain.Country
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
 import com.projects.aldajo92.mercadolibreproducts.presentation.events.DashBoardEvents
 import kotlinx.coroutines.launch
@@ -13,7 +15,8 @@ import javax.inject.Singleton
 
 @Singleton
 class DashBoardViewModel @Inject constructor(
-    private val repository: SearchRepository<Product>
+    private val countryRepository: CountryRepository<Country>,
+    private val searchRepository: SearchRepository<Product>
 ) : ViewModel() {
 
     private val _productItems = mutableListOf<Product>()
@@ -25,17 +28,17 @@ class DashBoardViewModel @Inject constructor(
     private var keyword: String? = null
 
     fun performFirstSearch(keyword: String) {
-        if (this.keyword == keyword || keyword.isEmpty()) return
+        if (keyword.isEmpty()) return
 
         this.keyword = keyword
         viewModelScope.launch {
             try {
-                val listResult = repository.getProductsFromSearch(keyword, 0) ?: emptyList()
+                val listResult = searchRepository.getProductsFromSearch(keyword, 0) ?: emptyList()
                 _responseLiveData.value = DashBoardEvents.ProductsSuccess(listResult)
                 _productItems.clear()
                 _productItems.addAll(listResult)
             } catch (e: Exception) {
-                // _responseLiveData.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
+//                 _responseLiveData.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
             }
         }
     }
@@ -44,13 +47,24 @@ class DashBoardViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 keyword?.let {
-                    val listResult = repository.getProductsFromSearch(it, offset) ?: emptyList()
+                    val listResult =
+                        searchRepository.getProductsFromSearch(it, offset) ?: emptyList()
                     _responseLiveData.value = DashBoardEvents.ProductsPaginationSuccess(listResult)
                     _productItems.addAll(listResult)
                 }
             } catch (e: Exception) {
-                // _responseLiveData.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
+                _responseLiveData.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
             }
         }
+    }
+
+    fun clearAll() {
+        keyword = ""
+        _responseLiveData.value = DashBoardEvents.ProductsSuccess(emptyList())
+        _productItems.clear()
+    }
+
+    fun getCountry(): String? {
+        return countryRepository.getSelectedCountry()?.countryId
     }
 }

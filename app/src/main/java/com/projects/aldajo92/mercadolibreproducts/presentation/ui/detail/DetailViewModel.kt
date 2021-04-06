@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.projects.aldajo92.mercadolibreproducts.data.repository.detail.DetailRepository
 import com.projects.aldajo92.mercadolibreproducts.data.repository.favorites.FavoritesRepository
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
@@ -51,6 +52,7 @@ class DetailViewModel @Inject constructor(
                     productDetail = it
                 }
             } catch (e: Exception) {
+                FirebaseCrashlytics.getInstance().recordException(e)
                 Timber.e(e)
             }
         }
@@ -65,6 +67,7 @@ class DetailViewModel @Inject constructor(
                     updateProduct(it)
                 }
             } catch (e: Exception) {
+                FirebaseCrashlytics.getInstance().recordException(e)
                 Timber.e(e)
             }
         }

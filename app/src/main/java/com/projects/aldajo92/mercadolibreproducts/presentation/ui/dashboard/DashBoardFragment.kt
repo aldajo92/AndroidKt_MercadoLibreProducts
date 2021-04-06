@@ -71,8 +71,8 @@ class DashBoardFragment : BaseFragment(), ItemListener<Product> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val countrySelected = args.country
-        if (countrySelected == viewModel.getCountry()) {
+        val countrySelected = args.country.let { if (it.isEmpty()) viewModel.getLastCountry() else it }
+        if (countrySelected == viewModel.getLastCountry()) {
             handleResponse(viewModel.productItems)
         } else viewModel.clearAll()
 
@@ -146,7 +146,7 @@ class DashBoardFragment : BaseFragment(), ItemListener<Product> {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString(COUNTRY_SELECTED_KEY, viewModel.getCountry())
+        outState.putString(COUNTRY_SELECTED_KEY, viewModel.getLastCountry())
     }
 
 }

@@ -2,18 +2,18 @@
 
 ## Description
 
-This app let to the user find products in MercadoLibre and store it in a local database, when it is marked as favorite. Only supports Colombia products (All available countries will be supported soon).
+This app let to the user find products in MercadoLibre and store it in a local database, when it is marked as favorite. Supports all coutries available in MercadoLibre.
 
 ## Preview ##
 
-<img src="media/preview1.jpeg" alt="Drawing" style="width: 200px;"/>
-<img src="media/preview2.jpeg" alt="Drawing" style="width: 200px;"/>
+<img src="media/meli_1.gif" alt="Drawing" style="width: 200px;"/>
+<img src="media/meli_2.gif" alt="Drawing" style="width: 200px;"/>
 
 <img src="media/preview3.jpeg" alt="Drawing" style="width: 400px;"/>
 
 ## Main Features
-- Find products in Mercado Libre Colombia (All available countries features comming soon)
-- Application supports DarkMode
+- It has a search field to find products in Mercado Libre.
+- App supports DarkMode
 - User can mark favorite products to save it in a local database.
 - Support live rotation without loosing data.
 - Open product link to see in browser.

@@ -2,7 +2,6 @@ package com.projects.aldajo92.mercadolibreproducts.presentation.ui.splash.adapte
 
 import androidx.databinding.ViewDataBinding
 import com.projects.aldajo92.mercadolibreproducts.databinding.ItemCountryBinding
-import com.projects.aldajo92.mercadolibreproducts.databinding.ItemDashboardBinding
 import com.projects.aldajo92.mercadolibreproducts.domain.Country
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.GenericItem
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.ItemListener
@@ -22,12 +21,6 @@ data class CountryItem(
             setVariable(variableId, data)
             viewCover.setOnClickListener {
                 listener.onClickItem(this@CountryItem)
-            }
-
-            if (country.countryId.isNotBlank()) {
-//                Glide.with(binding.root.context)
-//                    .load(country.formatMeliImgUrl())
-//                    .into(binding.imageViewPicture)
             }
         }
     }

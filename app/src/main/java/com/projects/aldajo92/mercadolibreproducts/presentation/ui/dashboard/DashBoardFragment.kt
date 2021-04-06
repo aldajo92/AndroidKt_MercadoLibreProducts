@@ -22,6 +22,7 @@ import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.G
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.ItemListener
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.PaginationMoviesScrollListener
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
+import com.projects.aldajo92.mercadolibreproducts.presentation.ui.COUNTRY_SELECTED_KEY
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.adapter.DashBoardItem
 import com.projects.aldajo92.mercadolibreproducts.presentation.utils.calculateBestSpanCount
 import dagger.android.support.AndroidSupportInjection
@@ -70,13 +71,10 @@ class DashBoardFragment : BaseFragment(), ItemListener<Product> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val firstSearch = args.firstSearch
-
-        if(firstSearch){
-            viewModel.clearAll()
-        } else {
+        val countrySelected = args.country
+        if (countrySelected == viewModel.getCountry()) {
             handleResponse(viewModel.productItems)
-        }
+        } else viewModel.clearAll()
 
         viewModel.responseLiveData.observe(viewLifecycleOwner, {
             when (it) {
@@ -144,6 +142,11 @@ class DashBoardFragment : BaseFragment(), ItemListener<Product> {
         val imm: InputMethodManager =
             context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(COUNTRY_SELECTED_KEY, viewModel.getCountry())
     }
 
 }

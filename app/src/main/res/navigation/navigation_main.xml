@@ -14,9 +14,8 @@
             android:id="@+id/action_splashFragment_to_dashboardFragment"
             app:destination="@id/dashboardFragment" >
             <argument
-                android:name="firstSearch"
-                android:defaultValue="true"
-                app:argType="boolean" />
+                android:name="country"
+                app:argType="string" />
         </action>
     </fragment>
 
@@ -26,9 +25,9 @@
         android:label="DashboardFragment"
         tools:layout="@layout/fragment_dashboard">
         <argument
-            android:name="firstSearch"
-            android:defaultValue="false"
-            app:argType="boolean" />
+            android:name="country"
+            android:defaultValue=""
+            app:argType="string" />
         <action
             android:id="@+id/action_dashboardFragment_to_detailFragment"
             app:destination="@id/detailFragment">

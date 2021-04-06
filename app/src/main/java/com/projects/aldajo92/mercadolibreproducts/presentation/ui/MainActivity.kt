@@ -8,6 +8,7 @@ import androidx.navigation.ui.NavigationUI
 import com.projects.aldajo92.mercadolibreproducts.R
 import com.projects.aldajo92.mercadolibreproducts.databinding.ActivityMainBinding
 import dagger.android.support.DaggerAppCompatActivity
+import timber.log.Timber
 
 class MainActivity : DaggerAppCompatActivity() {
 
@@ -18,9 +19,7 @@ class MainActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        binding = ActivityMainBinding.inflate(layoutInflater)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-//        setContentView(binding.root)
 
         binding?.let {
             setupViews(it)
@@ -40,5 +39,10 @@ class MainActivity : DaggerAppCompatActivity() {
 
     fun hideBottomNavigation() {
         binding?.bottomNavView?.visibility = View.GONE
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Timber.i("save state please!")
     }
 }

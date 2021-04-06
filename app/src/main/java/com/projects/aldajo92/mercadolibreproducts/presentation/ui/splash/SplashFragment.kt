@@ -77,7 +77,8 @@ class SplashFragment : BaseFragment(), ItemListener<Country> {
 
     override fun onClickItem(item: GenericItem<Country>) {
         viewModel.setCountry(item.data)
-        val action = SplashFragmentDirections.actionSplashFragmentToDashboardFragment()
+        val action =
+            SplashFragmentDirections.actionSplashFragmentToDashboardFragment(item.data.countryId)
         findNavController().navigate(action)
     }
 

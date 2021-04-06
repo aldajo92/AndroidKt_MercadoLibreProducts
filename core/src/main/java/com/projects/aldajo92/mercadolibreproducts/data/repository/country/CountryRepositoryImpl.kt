@@ -9,18 +9,18 @@ class CountryRepositoryImpl<T> constructor(
     private val mapper: EntityListMapper<T, Country>
 ) : CountryRepository<Country> {
 
-    private var selectedCountry: Country? = null
+    private var country: Country? = null
 
     override suspend fun getCountries(): List<Country> {
         return mapper.map(countryDataSource.getCountries() ?: emptyList())
     }
 
     override fun setSelectedCountry(country: Country) {
-        selectedCountry = country
+        this.country = country
     }
 
     override fun getSelectedCountry(): Country? {
-        return selectedCountry
+        return country
     }
 
 }

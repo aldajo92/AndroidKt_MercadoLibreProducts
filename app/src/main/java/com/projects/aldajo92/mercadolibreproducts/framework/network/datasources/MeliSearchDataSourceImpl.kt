@@ -8,9 +8,9 @@ class MeliSearchDataSourceImpl constructor(
     private val meliApiService: MeliApiService
 ) : ApiSearchDataSource<ProductResponse> {
 
-    override suspend fun getProductsFromSearch(keywords: String, offset: Int): List<ProductResponse> {
+    override suspend fun getProductsFromSearch(countryId: String, keywords: String, offset: Int): List<ProductResponse> {
         if (keywords.isBlank()) return emptyList()
-        return meliApiService.getProductsFromSearch(keywords, offset).productList
+        return meliApiService.getProductsFromSearch(countryId, keywords, offset).productList
     }
 
 }

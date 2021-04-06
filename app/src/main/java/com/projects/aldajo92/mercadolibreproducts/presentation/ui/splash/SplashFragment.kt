@@ -17,6 +17,7 @@ import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.G
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.ItemListener
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.adapter.DashBoardItem
+import com.projects.aldajo92.mercadolibreproducts.presentation.ui.favorites.FavoritesFragmentDirections
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.splash.adapter.CountryItem
 import com.projects.aldajo92.mercadolibreproducts.presentation.utils.calculateBestSpanCount
 import timber.log.Timber
@@ -76,7 +77,8 @@ class SplashFragment : BaseFragment(), ItemListener<Country> {
 
     override fun onClickItem(item: GenericItem<Country>) {
         viewModel.setCountry(item.data)
-        findNavController().navigate(R.id.action_splashFragment_to_dashboardFragment)
+        val action = SplashFragmentDirections.actionSplashFragmentToDashboardFragment()
+        findNavController().navigate(action)
     }
 
 }

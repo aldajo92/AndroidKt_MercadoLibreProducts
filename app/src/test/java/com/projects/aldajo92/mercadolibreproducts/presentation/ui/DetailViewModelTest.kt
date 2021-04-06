@@ -46,7 +46,7 @@ class DetailViewModelTest {
         val mockProduct = Product(
             "1234",
             "title",
-            2000,
+            2000.0,
             false,
             "url.com",
             "imageId123",
@@ -65,7 +65,7 @@ class DetailViewModelTest {
         val mockProduct = Product(
             "1234",
             "title",
-            2000,
+            2000.0,
             false,
             "url.com",
             "imageId123",

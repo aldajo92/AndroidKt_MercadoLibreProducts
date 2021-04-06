@@ -34,7 +34,7 @@ class MeliSearchDataSourceTest {
     fun getProductsFromSearch_empty() {
         val keyword = ""
         runBlocking {
-            assertEquals(0, meliSearchDataSourceImpl.getProductsFromSearch(keyword, 0).size)
+            assertEquals(0, meliSearchDataSourceImpl.getProductsFromSearch("COP", keyword, 0).size)
         }
     }
 
@@ -42,16 +42,16 @@ class MeliSearchDataSourceTest {
     fun getProductsFromSearch_notEmpty() {
         val keyword = "keyword"
         val productEntity = listOf(
-            ProductResponse(Random.toString(), "Title1", 10000, "COP", 10),
-            ProductResponse(Random.toString(), "Title2", 20000, "COP", 10),
-            ProductResponse(Random.toString(), "Title3", 30000, "COP", 10),
-            ProductResponse(Random.toString(), "Title4", 40000, "COP", 10)
+            ProductResponse(Random.toString(), "Title1", 10000.0, "COP", 10),
+            ProductResponse(Random.toString(), "Title2", 20000.0, "COP", 10),
+            ProductResponse(Random.toString(), "Title3", 30000.0, "COP", 10),
+            ProductResponse(Random.toString(), "Title4", 40000.0, "COP", 10)
         )
         val responseMock = mock(SearchResponse::class.java)
         `when`(responseMock.productList).thenReturn(productEntity)
         runBlocking {
-            `when`(meliApiService.getProductsFromSearch(keyword)).thenReturn(responseMock)
-            assertEquals(4, meliSearchDataSourceImpl.getProductsFromSearch(keyword, 0).size)
+            `when`(meliApiService.getProductsFromSearch("COP", keyword)).thenReturn(responseMock)
+            assertEquals(4, meliSearchDataSourceImpl.getProductsFromSearch("COP", keyword, 0).size)
         }
     }
 }

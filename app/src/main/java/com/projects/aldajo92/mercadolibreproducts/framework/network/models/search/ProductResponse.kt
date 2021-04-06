@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 data class ProductResponse(
     val id: String,
     val title: String,
-    val price: Int,
+    val price: Double,
     @Json(name = "currency_id") val currency: String? = "",
     @Json(name = "available_quantity") val stock: Int,
     val thumbnail: String? = "",

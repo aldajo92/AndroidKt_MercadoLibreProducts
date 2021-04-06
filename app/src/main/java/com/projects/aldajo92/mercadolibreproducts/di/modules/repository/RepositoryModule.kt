@@ -73,10 +73,11 @@ class RepositoryModule {
 
     @Provides
     internal fun provideSearchProductsRepository(
+        countryRepository: CountryRepository<Country>,
         apiSearch: ApiSearchDataSource<ProductResponse>,
         mapper: ProductResponseToProductList
     ): SearchRepository<Product> {
-        return SearchRepositoryImpl(apiSearch, mapper)
+        return SearchRepositoryImpl(countryRepository, apiSearch, mapper)
     }
 
     @Provides

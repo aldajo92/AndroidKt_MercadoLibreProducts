@@ -59,8 +59,8 @@ class FavoritesRepositoryImplTest {
     @Test
     fun getProductsFromSearch_returnsComplete() {
         val productEntity = listOf(
-            ProductEntity("1233", "title1", 10000, false),
-            ProductEntity("1234", "title2", 20000, true)
+            ProductEntity("1233", "title1", 10000.0, false),
+            ProductEntity("1234", "title2", 20000.0, true)
         )
         runBlocking {
             Mockito.`when`(dbDataSource.getStoredData()).thenReturn(productEntity)

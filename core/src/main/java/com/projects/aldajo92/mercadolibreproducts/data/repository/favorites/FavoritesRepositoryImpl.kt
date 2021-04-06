@@ -3,6 +3,8 @@ package com.projects.aldajo92.mercadolibreproducts.data.repository.favorites
 import com.projects.aldajo92.mercadolibreproducts.data.datasource.DBDataSource
 import com.projects.aldajo92.mercadolibreproducts.data.mapper.EntityListMapper
 import com.projects.aldajo92.mercadolibreproducts.data.mapper.EntityMapper
+import com.projects.aldajo92.mercadolibreproducts.data.repository.country.CountryRepository
+import com.projects.aldajo92.mercadolibreproducts.domain.Country
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
 
 class FavoritesRepositoryImpl<T> constructor(

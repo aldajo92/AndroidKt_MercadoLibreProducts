@@ -25,7 +25,7 @@ class DashBoardViewModel @Inject constructor(
     private var keyword: String? = null
 
     fun performFirstSearch(keyword: String) {
-        if (this.keyword == keyword || keyword.isEmpty()) return
+        if (keyword.isEmpty()) return
 
         this.keyword = keyword
         viewModelScope.launch {
@@ -35,7 +35,7 @@ class DashBoardViewModel @Inject constructor(
                 _productItems.clear()
                 _productItems.addAll(listResult)
             } catch (e: Exception) {
-                // _responseLiveData.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
+//                 _responseLiveData.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
             }
         }
     }
@@ -49,8 +49,14 @@ class DashBoardViewModel @Inject constructor(
                     _productItems.addAll(listResult)
                 }
             } catch (e: Exception) {
-                // _responseLiveData.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
+                 _responseLiveData.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
             }
         }
+    }
+
+    fun clearAll() {
+        keyword = ""
+        _responseLiveData.value = DashBoardEvents.ProductsSuccess(emptyList())
+        _productItems.clear()
     }
 }

@@ -5,7 +5,7 @@ import java.io.Serializable
 data class Product(
     val meliId: String,
     val title: String,
-    val price: Int,
+    val price: Double,
     val isFavorite: Boolean = false,
     val imgUrl: String = "",
     val imgId: String = "",
@@ -14,6 +14,6 @@ data class Product(
     val description: String = ""
 ) : Serializable {
     companion object {
-        val EMPTY = Product("0", "", 0, false)
+        val EMPTY = Product("0", "", 0.0, false)
     }
 }

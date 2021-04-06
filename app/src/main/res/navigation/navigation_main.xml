@@ -12,7 +12,12 @@
         tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment" />
+            app:destination="@id/dashboardFragment" >
+            <argument
+                android:name="firstSearch"
+                android:defaultValue="true"
+                app:argType="boolean" />
+        </action>
     </fragment>
 
     <fragment
@@ -20,6 +25,10 @@
         android:name="com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.DashBoardFragment"
         android:label="DashboardFragment"
         tools:layout="@layout/fragment_dashboard">
+        <argument
+            android:name="firstSearch"
+            android:defaultValue="false"
+            app:argType="boolean" />
         <action
             android:id="@+id/action_dashboardFragment_to_detailFragment"
             app:destination="@id/detailFragment">

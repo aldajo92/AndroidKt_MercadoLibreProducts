@@ -10,18 +10,19 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.projects.aldajo92.mercadolibreproducts.BR
 import com.projects.aldajo92.mercadolibreproducts.R
 import com.projects.aldajo92.mercadolibreproducts.databinding.FragmentDashboardBinding
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
+import com.projects.aldajo92.mercadolibreproducts.presentation.events.DashBoardEvents
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.GenericAdapter
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.GenericItem
+import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.ItemListener
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.PaginationMoviesScrollListener
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
-import com.projects.aldajo92.mercadolibreproducts.presentation.events.DashBoardEvents
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.adapter.DashBoardItem
-import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.ItemListener
 import com.projects.aldajo92.mercadolibreproducts.presentation.utils.calculateBestSpanCount
 import dagger.android.support.AndroidSupportInjection
 import timber.log.Timber
@@ -38,6 +39,8 @@ class DashBoardFragment : BaseFragment(), ItemListener<Product> {
     private lateinit var productAdapter: GenericAdapter<Product>
 
     private lateinit var gridLayoutManager: GridLayoutManager
+
+    private val args: DashBoardFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,13 +70,20 @@ class DashBoardFragment : BaseFragment(), ItemListener<Product> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        handleResponse(viewModel.productItems)
+        val firstSearch = args.firstSearch
+
+        if(firstSearch){
+            viewModel.clearAll()
+        } else {
+            handleResponse(viewModel.productItems)
+        }
 
         viewModel.responseLiveData.observe(viewLifecycleOwner, {
             when (it) {
                 is DashBoardEvents.ProductsSuccess -> handleNewResponse(it.getDataOnce())
                 is DashBoardEvents.ProductsPaginationSuccess -> handlePaginationResponse(it.getDataOnce())
                 is DashBoardEvents.ErrorMessage -> showToastMessage(it.getDataOnce())
+                else -> Unit
             }
         })
 

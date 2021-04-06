@@ -67,7 +67,7 @@ class DashBoardViewModel @Inject constructor(
         _productItems.clear()
     }
 
-    fun getLastCountry(): String? {
+    fun getLastCountry(): String {
         return lastCountry
     }
 }

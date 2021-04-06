@@ -6,8 +6,8 @@ This app let to the user find products in MercadoLibre and store it in a local d
 
 ## Preview ##
 
-<img src="media/preview1.jpeg" alt="Drawing" style="width: 200px;"/>
-<img src="media/preview2.jpeg" alt="Drawing" style="width: 200px;"/>
+<img src="media/meli_1.gif" alt="Drawing" style="width: 200px;"/>
+<img src="media/meli_2.gif" alt="Drawing" style="width: 200px;"/>
 
 <img src="media/preview3.jpeg" alt="Drawing" style="width: 400px;"/>
 

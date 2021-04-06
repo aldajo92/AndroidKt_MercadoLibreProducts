@@ -12,6 +12,8 @@ import com.projects.aldajo92.mercadolibreproducts.domain.ProductDescription
 import com.projects.aldajo92.mercadolibreproducts.domain.ProductDetail
 import com.projects.aldajo92.mercadolibreproducts.presentation.events.DashBoardEvents
 import kotlinx.coroutines.launch
+import timber.log.Timber
+import java.lang.Exception
 import javax.inject.Inject
 
 class DetailViewModel @Inject constructor(
@@ -44,19 +46,26 @@ class DetailViewModel @Inject constructor(
 
     private fun getProductDetail(product: Product) {
         viewModelScope.launch {
-            detailRepository.getProductDetail(product.meliId)?.let {
-                productDetail = it
+            try {
+                detailRepository.getProductDetail(product.meliId)?.let {
+                    productDetail = it
+                }
+            } catch (e: Exception) {
+                Timber.e(e)
             }
         }
     }
 
     private fun getProductDescription(product: Product) {
         viewModelScope.launch {
-            detailRepository.getProductDescription(product.meliId)?.let {
-                productDescription = it
-                description.set(it.text)
-
-                updateProduct(it)
+            try {
+                detailRepository.getProductDescription(product.meliId)?.let {
+                    productDescription = it
+                    description.set(it.text)
+                    updateProduct(it)
+                }
+            } catch (e: Exception) {
+                Timber.e(e)
             }
         }
     }
@@ -79,7 +88,7 @@ class DetailViewModel @Inject constructor(
         isFavorite.set(state)
     }
 
-    fun openLink(){
+    fun openLink() {
         productField.get()?.let {
             _eventLiveData.postValue(DashBoardEvents.OpenURL(it.productUrl))
         }

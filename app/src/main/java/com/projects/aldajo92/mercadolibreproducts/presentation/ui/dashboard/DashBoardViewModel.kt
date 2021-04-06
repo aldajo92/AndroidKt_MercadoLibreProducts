@@ -27,6 +27,8 @@ class DashBoardViewModel @Inject constructor(
 
     private var keyword: String? = null
 
+    private var lastCountry: String = ""
+
     fun performFirstSearch(keyword: String) {
         if (keyword.isEmpty()) return
 
@@ -37,6 +39,7 @@ class DashBoardViewModel @Inject constructor(
                 _responseLiveData.value = DashBoardEvents.ProductsSuccess(listResult)
                 _productItems.clear()
                 _productItems.addAll(listResult)
+                lastCountry = countryRepository.getSelectedCountry()?.countryId ?: ""
             } catch (e: Exception) {
 //                 _responseLiveData.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
             }
@@ -64,7 +67,7 @@ class DashBoardViewModel @Inject constructor(
         _productItems.clear()
     }
 
-    fun getCountry(): String? {
-        return countryRepository.getSelectedCountry()?.countryId
+    fun getLastCountry(): String? {
+        return lastCountry
     }
 }

@@ -41,7 +41,12 @@ class FavoritesRepositoryImplTest {
     private val invertMapper: EntityMapper<Product, ProductEntity> by lazy {
         object : EntityMapper<Product, ProductEntity> {
             override fun map(inputValue: Product): ProductEntity {
-                return ProductEntity(inputValue.meliId, inputValue.title, inputValue.price, false)
+                return ProductEntity(
+                    inputValue.meliId,
+                    inputValue.title,
+                    inputValue.price ?: 0.0,
+                    false
+                )
             }
         }
     }

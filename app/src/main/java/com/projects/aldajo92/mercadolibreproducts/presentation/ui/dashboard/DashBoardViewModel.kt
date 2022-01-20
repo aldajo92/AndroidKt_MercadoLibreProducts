@@ -4,16 +4,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.projects.aldajo92.mercadolibreproducts.data.repository.country.CountryRepository
 import com.projects.aldajo92.mercadolibreproducts.data.repository.search.SearchRepository
 import com.projects.aldajo92.mercadolibreproducts.domain.Country
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
 import com.projects.aldajo92.mercadolibreproducts.presentation.events.DashBoardEvents
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
 class DashBoardViewModel @Inject constructor(
     private val countryRepository: CountryRepository<Country>,
     private val searchRepository: SearchRepository<Product>
@@ -41,7 +42,8 @@ class DashBoardViewModel @Inject constructor(
                 _productItems.addAll(listResult)
                 lastCountry = countryRepository.getSelectedCountry()?.countryId ?: ""
             } catch (e: Exception) {
-                 _responseLiveData.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
+                FirebaseCrashlytics.getInstance().recordException(e)
+                Timber.e(e)
             }
         }
     }
@@ -56,7 +58,8 @@ class DashBoardViewModel @Inject constructor(
                     _productItems.addAll(listResult)
                 }
             } catch (e: Exception) {
-                _responseLiveData.value = DashBoardEvents.ErrorMessage("Failure: " + e.message)
+                FirebaseCrashlytics.getInstance().recordException(e)
+                Timber.e(e)
             }
         }
     }

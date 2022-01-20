@@ -63,6 +63,12 @@ Check [android_build.yml](.github/workflows/android_build.yml) to get more infor
 
 ![](media/githubactions2.png)
 
+## Crash Reports ##
+Crashlytics from Firabase was included to track all crashes presented in the app. And the following resources was considered for its implementation:
+
+- [Get started with Firebase Crashlytics](https://firebase.google.com/docs/crashlytics/get-started?platform=android)
+- [Publish the “google-services.json” file of an Android app project or not?](https://cyb3rko.medium.com/publish-the-google-services-json-file-of-an-android-app-project-or-not-1951fb555b26)
+
 ## References ##
 
 RecyclerView:
@@ -131,3 +137,4 @@ Binding & Views:
 
 ## Author
 Alejandro Daniel José Gómez Flórez (@aldajo92)
+# AndroidKT-Asteroid-Radar

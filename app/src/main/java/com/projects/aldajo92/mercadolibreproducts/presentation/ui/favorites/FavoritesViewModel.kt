@@ -4,10 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.projects.aldajo92.mercadolibreproducts.data.repository.favorites.FavoritesRepository
 import com.projects.aldajo92.mercadolibreproducts.domain.Product
 import com.projects.aldajo92.mercadolibreproducts.presentation.events.DashBoardEvents
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -30,7 +32,8 @@ class FavoritesViewModel @Inject constructor(
                 _productItems.clear()
                 _productItems.addAll(favoritesList)
             } catch (e: Exception) {
-
+                FirebaseCrashlytics.getInstance().recordException(e)
+                Timber.e(e)
             }
         }
     }

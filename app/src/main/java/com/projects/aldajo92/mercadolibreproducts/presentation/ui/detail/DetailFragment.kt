@@ -15,7 +15,6 @@ import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
 import com.projects.aldajo92.mercadolibreproducts.presentation.utils.formatMeliImgUrl
 import javax.inject.Inject
 
-
 class DetailFragment : BaseFragment() {
 
     @Inject

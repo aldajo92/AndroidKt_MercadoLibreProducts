@@ -20,7 +20,7 @@ import com.projects.aldajo92.mercadolibreproducts.presentation.events.DashBoardE
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.GenericAdapter
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.GenericItem
 import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.ItemListener
-import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.PaginationMoviesScrollListener
+import com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter.PaginationScrollListener
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.BaseFragment
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.COUNTRY_SELECTED_KEY
 import com.projects.aldajo92.mercadolibreproducts.presentation.ui.dashboard.adapter.DashBoardItem
@@ -86,7 +86,7 @@ class DashBoardFragment : BaseFragment(), ItemListener<Product> {
         })
 
         binding.recyclerViewProducts.addOnScrollListener(
-            object : PaginationMoviesScrollListener(gridLayoutManager, 50) {
+            object : PaginationScrollListener(gridLayoutManager, 50) {
                 override fun onLoadMore(currentPage: Int, totalItemCount: Int) {
                     Timber.i("currentPage: $currentPage + totalItemCount: $totalItemCount")
                     viewModel.getProductsByPagination(totalItemCount)

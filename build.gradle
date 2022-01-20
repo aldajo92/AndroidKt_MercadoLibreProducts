@@ -1,5 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 ext {
+    firebase_boom = '26.8.0'
     // Dependencies Version
     androidx_appcompat = '1.2.0'
     androidx_coreKtx = '1.3.2'
@@ -37,6 +38,8 @@ buildscript {
         kotlin_version = '1.4.31'
         gradle_version = '4.1.2'
         safe_args = '2.3.2'
+        google_services = '4.3.5'
+        crashlitics = '2.5.2'
     }
     repositories {
         google()
@@ -46,6 +49,8 @@ buildscript {
         classpath "com.android.tools.build:gradle:$gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$safe_args"
+        classpath "com.google.gms:google-services:$google_services"
+        classpath "com.google.firebase:firebase-crashlytics-gradle:$crashlitics"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

@@ -42,7 +42,6 @@ class DetailViewModel @Inject constructor(
             getProductDetail(product)
             getProductDescription(product)
         }
-
     }
 
     private fun getProductDetail(product: Product) {

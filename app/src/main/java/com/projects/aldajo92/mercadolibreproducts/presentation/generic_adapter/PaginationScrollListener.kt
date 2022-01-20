@@ -3,7 +3,7 @@ package com.projects.aldajo92.mercadolibreproducts.presentation.generic_adapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class PaginationMoviesScrollListener(
+abstract class PaginationScrollListener(
     private val layoutManager: LinearLayoutManager,
     private val visibleThreshold: Int
 ) : RecyclerView.OnScrollListener() {

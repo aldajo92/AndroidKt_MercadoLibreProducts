@@ -15,7 +15,6 @@ import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
 class DashBoardViewModel @Inject constructor(
     private val countryRepository: CountryRepository<Country>,
     private val searchRepository: SearchRepository<Product>
